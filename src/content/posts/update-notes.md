@@ -21,8 +21,9 @@ lang: 'zh'
 <summary>v1.0.8 - 2025-12-18</summary>
 
 ```
-docs: 添加更新日志板块，并为导航页添加链接
 docs: 添加 Biome 格式化代码记录文章
+docs: 添加更新日志板块，并为导航页添加链接
+docs: 更新软件推荐贴文内容
 refactor(dock): run `pnpm format`
 refactor(dock): 手动执行Biome相关命令格式化代码
 ```

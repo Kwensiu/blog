@@ -28,12 +28,16 @@ pinOrder: 0
 
 - [LDDC](https://github.com/chenmozhijin/LDDC) | 音乐歌词搜刮
 
-- [PhotoDemon](http://www.photodemon.org/) | 图片处理
+- [PhotoDemon](http://www.photodemon.org/) | 开源图片专业处理
+
+- [洋芋田图像工具箱](https://www.potatofield.cn/imagetoolkit) | 图片快速处理
 
 
 # 办公效率
 
 - [POT](https://github.com/pot-app/pot-desktop) |  便捷翻译
+
+- [PicGo](https://github.com/Molunerfinn/PicGo) | 图床管理
 
 
 # 系统工具
