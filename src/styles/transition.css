@@ -43,6 +43,21 @@ html.is-animating .transition-swup-fade {
     animation-delay: 400ms;
 }
 
+.navbar-slide {
+    transform: translateY(-100%);
+    animation: 300ms slide-down;
+    animation-fill-mode: forwards;
+}
+
+@keyframes slide-down {
+    0% {
+        transform: translateY(-100%);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
 /* Post content */
 #post-container :nth-child(1) { animation-delay: calc(var(--content-delay) + 0ms) }
 #post-container :nth-child(2) { animation-delay: calc(var(--content-delay) + 50ms) }

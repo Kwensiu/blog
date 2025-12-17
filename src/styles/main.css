@@ -1,6 +1,9 @@
 @tailwind components;
 
 @layer components {
+    .navbar {
+        @apply rounded-[var(--radius-large)] overflow-hidden bg-white/60 transition;
+    }
     .card-base {
         @apply rounded-[var(--radius-large)] overflow-hidden bg-[var(--card-bg)] transition;
     }
@@ -27,7 +30,7 @@
         @apply transition rounded-md p-1.5 -m-1.5 expand-animation;
     }
     .float-panel {
-        @apply top-[5.25rem] rounded-[var(--radius-large)] overflow-hidden bg-[var(--float-panel-bg)] transition shadow-xl dark:shadow-none
+        @apply top-[5.25rem] rounded-[var(--radius-xlarge)] overflow-hidden bg-[var(--float-panel-bg)] transition shadow-xl dark:shadow-none
     }
     .float-panel-closed {
         @apply -translate-y-1 opacity-0 pointer-events-none
