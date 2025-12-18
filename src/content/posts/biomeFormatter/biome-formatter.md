@@ -2,7 +2,7 @@
 title: Biome | Formatter
 published: 2025-12-18T00:00:00.000Z
 description: 记录使用于当前博客的 Biome 命令
-image: ''
+image: './cover.png'
 tags:
   - Biome
   - 开发
@@ -102,7 +102,7 @@ pnpm exec biome ci --reporter=github ./src
 某些问题可能需要手动修复：
 
 - 查看具体的 warning 信息
-- 运行 `biome check --apply-unsafe ./src` 尝试修复更多问题
+- 运行 `pnpm exec biome check --write --unsafe` 尝试修复更多问题
 
 对于特定规则，可以在 `biome.json` 中临时禁用：
 
