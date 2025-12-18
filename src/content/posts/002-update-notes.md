@@ -18,6 +18,17 @@ lang: 'zh'
 ---
 
 <details>
+<summary>v1.0.10 - 2025-12-18 - [大图查看]</summary>
+
+```
+feat(image): 为 ImageWrapper 添加 PhotoSwipe 支持及相关属性
+
+feat(layout): 扩展 PhotoSwipe 配置并支持 Banner 图片展示
+```
+
+</details>
+
+<details>
 <summary>v1.0.9 - 2025-12-18</summary>
 
 ```
@@ -70,7 +81,7 @@ docs(posts): 更新导航页描述和内容
 </details>
 
 <details>
-<summary>v1.0.5 - 2025-12-18</summary>
+<summary>v1.0.5 - 2025-12-18 - [添加Dock]</summary>
 
 ```
 feat(dock): 添加底部悬浮 Dock 组件及搜索、主题切换功能
@@ -89,7 +100,7 @@ feat(dock): 添加底部悬浮 Dock 组件及搜索、主题切换功能
 </details>
 
 <details>
-<summary>v1.0.4 - 2025-12-18</summary>
+<summary>v1.0.4 - 2025-12-18 - [Navbar模糊]</summary>
 
 ```
 feat(navbar): 更新Navbar样式并优化动画效果
@@ -139,7 +150,7 @@ build(astro): 更新站点配置中的 vercel 部署地址
 </details>
 
 <details>
-<summary>v1.0.0 - 2025-12-16</summary>
+<summary>v1.0.0 - 2025-12-16 - [部署] </summary>
 
 ```
 世界加载完成：现已支持 Vercel 快递直达

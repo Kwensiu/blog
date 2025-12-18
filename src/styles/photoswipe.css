@@ -2,11 +2,48 @@
     @apply transition bg-black/40 hover:bg-black/50 active:bg-black/60 flex items-center justify-center mr-0 w-12 h-12 !important;
 }
 .pswp__button--zoom, .pswp__button--close {
-    @apply mt-4 rounded-xl active:scale-90 !important;
+    @apply mt-4 active:scale-90 !important;
 }
 .pswp__button--zoom {
     @apply mr-2.5 !important;
 }
 .pswp__button--close {
     @apply mr-4 !important;
+}
+
+/* 修复图片重叠和拉伸问题 */
+.pswp__zoom-wrap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pswp__img {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    object-fit: contain;
+    object-position: center;
+}
+
+/* 防止图片在动画期间重叠 */
+.pswp__img--placeholder {
+    display: none;
+}
+
+.pswp__img--initial {
+    display: block;
+    opacity: 0;
+    transition: opacity 0.33s ease;
+}
+
+.pswp__img--loaded {
+    opacity: 1;
 }
