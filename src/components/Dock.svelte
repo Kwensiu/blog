@@ -195,7 +195,7 @@ function openSearch(e: Event) {
   tabindex="0"
   class="fixed left-1/2 z-50 transition-all duration-300 ease-out"
   class:bottom-6={showDock}
-  class:bottom-4={!showDock}
+  class:-bottom-6={!showDock}
   class:opacity-100={showDock}
   class:min-w-48={showDock}
   class:min-w-40={!showDock}
@@ -207,7 +207,7 @@ function openSearch(e: Event) {
 >
   <!-- 背景模糊效果 - 半掩状态也有模糊 -->
   <div
-    class="absolute inset-0 bg-white/60 dark:bg-black/60 backdrop-blur-xs rounded-full shadow-lg border border-black/10 dark:border-white/20"
+    class="absolute inset-0 bg-white/60 dark:bg-neutral-500/60 backdrop-blur-xs rounded-full shadow-lg border border-black/10 dark:border-white/20"
   ></div>
 
   <!-- 按钮容器 -->
