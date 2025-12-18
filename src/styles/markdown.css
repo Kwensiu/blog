@@ -19,6 +19,12 @@
         }
     }
 
+    /* 修改为文字下方横线效果，模仿记事本风格 */
+    p {
+        @apply relative leading-relaxed py-1;
+        border-bottom: 1px solid var(--line-color);
+    }
+
     a:not(.no-styling) {
         @apply relative bg-none link font-medium text-[var(--primary)]
         underline decoration-[var(--link-underline)] decoration-1 decoration-dashed underline-offset-4;

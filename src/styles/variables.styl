@@ -9,6 +9,71 @@ rainbow-light = linear-gradient(to right, oklch(0.80 0.10 0), oklch(0.80 0.10 30
 rainbow-dark = linear-gradient(to right, oklch(0.70 0.10 0), oklch(0.70 0.10 30), oklch(0.70 0.10 60), oklch(0.70 0.10 90), oklch(0.70 0.10 120), oklch(0.70 0.10 150), oklch(0.70 0.10 180), oklch(0.70 0.10 210), oklch(0.70 0.10 240), oklch(0.70 0.10 270), oklch(0.70 0.10 300), oklch(0.70 0.10 330), oklch(0.70 0.10 360))
 
 :root
+  --hue 210
+  --sat 16%
+  --lig 50%
+
+  --deep-bg oklch(100% 0 var(--hue))
+  --card-bg oklch(100% 0 var(--hue))
+  --float-panel-bg oklch(100% 0 var(--hue))
+  --codeblock-bg oklch(98% 0.005 var(--hue))
+  --codeblock-selection oklch(80% 0.02 var(--hue))
+  --inline-code-bg oklch(92% 0.01 var(--hue))
+  --inline-code-color oklch(50% 0.02 var(--hue))
+  --btn-regular-bg oklch(95% 0.005 var(--hue))
+  --btn-regular-bg-hover oklch(92% 0.005 var(--hue))
+  --btn-regular-bg-active oklch(88% 0.005 var(--hue))
+  --btn-card-bg-hover oklch(95% 0.005 var(--hue))
+  --btn-card-bg-active oklch(90% 0.005 var(--hue))
+  --btn-plain-bg-hover oklch(92% 0.005 var(--hue))
+  --btn-plain-bg-active oklch(88% 0.005 var(--hue))
+  --btn-content oklch(30% 0.01 var(--hue))
+  --enter-btn-bg oklch(92% 0.005 var(--hue))
+  --enter-btn-bg-hover oklch(88% 0.005 var(--hue))
+  --enter-btn-bg-active oklch(84% 0.005 var(--hue))
+  --primary oklch(50% 0.1 var(--hue))
+  --title-active oklch(30% 0.05 var(--hue))
+  --link oklch(40% 0.1 var(--hue))
+  --link-hover oklch(30% 0.1 var(--hue))
+  --link-active oklch(20% 0.1 var(--hue))
+  --link-underline oklch(80% 0.05 var(--hue))
+  --selection-bg oklch(80% 0.1 var(--hue))
+  --deep-text oklch(20% 0.01 var(--hue))
+  --line-divider oklch(90% 0 var(--hue))
+  --meta-divider oklch(80% 0 var(--hue))
+  --line-color oklch(90% 0 0) // 添加笔记本横线颜色
+
+  @media (prefers-color-scheme: dark)
+    --deep-bg oklch(18% 0.01 var(--hue))
+    --card-bg oklch(22% 0.01 var(--hue))
+    --float-panel-bg oklch(30% 0.01 var(--hue))
+    --codeblock-bg oklch(18% 0.005 var(--hue))
+    --codeblock-selection oklch(40% 0.02 var(--hue))
+    --inline-code-bg oklch(28% 0.01 var(--hue))
+    --inline-code-color oklch(80% 0.02 var(--hue))
+    --btn-regular-bg oklch(25% 0.005 var(--hue))
+    --btn-regular-bg-hover oklch(30% 0.005 var(--hue))
+    --btn-regular-bg-active oklch(35% 0.005 var(--hue))
+    --btn-card-bg-hover oklch(30% 0.005 var(--hue))
+    --btn-card-bg-active oklch(35% 0.005 var(--hue))
+    --btn-plain-bg-hover oklch(30% 0.005 var(--hue))
+    --btn-plain-bg-active oklch(35% 0.005 var(--hue))
+    --btn-content oklch(80% 0.01 var(--hue))
+    --enter-btn-bg oklch(30% 0.005 var(--hue))
+    --enter-btn-bg-hover oklch(35% 0.005 var(--hue))
+    --enter-btn-bg-active oklch(40% 0.005 var(--hue))
+    --primary oklch(70% 0.1 var(--hue))
+    --title-active oklch(90% 0.05 var(--hue))
+    --link oklch(75% 0.1 var(--hue))
+    --link-hover oklch(85% 0.1 var(--hue))
+    --link-active oklch(95% 0.1 var(--hue))
+    --link-underline oklch(40% 0.05 var(--hue))
+    --selection-bg oklch(40% 0.1 var(--hue))
+    --deep-text oklch(90% 0.01 var(--hue))
+    --line-divider oklch(35% 0 var(--hue))
+    --meta-divider oklch(45% 0 var(--hue))
+    --line-color oklch(35% 0 0) // 暗色模式下的笔记本横线颜色
+
   --radius-small 0.25rem
   --radius-medium 0.5rem
   --radius-large 0.75rem
