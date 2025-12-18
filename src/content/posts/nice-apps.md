@@ -1,8 +1,11 @@
 ---
 title: 软件库
-published: 2025-12-16
+published: 2025-12-16T00:00:00.000Z
+updated: 2025-12-18T13:58:53.785Z
 description: 记录各种好用的软件应用
-tags: [软件, 收藏]
+tags:
+  - 软件
+  - 收藏
 category: 软件
 draft: false
 pin: false

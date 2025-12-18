@@ -71,9 +71,15 @@ importers:
       astro-icon:
         specifier: ^1.1.5
         version: 1.1.5
+      chalk:
+        specifier: ^4.1.2
+        version: 4.1.2
       hastscript:
         specifier: ^9.0.1
         version: 9.0.1
+      js-yaml:
+        specifier: ^4.1.0
+        version: 4.1.0
       katex:
         specifier: ^0.16.27
         version: 0.16.27

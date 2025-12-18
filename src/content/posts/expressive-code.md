@@ -1,11 +1,15 @@
 ---
 title: Expressive Code 代码高亮示例
-published: 2024-04-10
+published: 2024-04-10T00:00:00.000Z
 description: 使用 Expressive Code 在 Markdown 中代码块的外观示例。
-tags: [Markdown, 博客, 演示]
+tags:
+  - Markdown
+  - 博客
+  - 演示
 category: 示例
 draft: false
 hidden: true
+updated: 2025-12-18T13:58:53.755Z
 ---
 
 这里，我们将探索使用 [Expressive Code](https://expressive-code.com/) 的代码块外观。提供的示例基于官方文档，你可以参考官方文档获取更多详细信息。

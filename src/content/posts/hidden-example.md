@@ -1,11 +1,14 @@
 ---
 title: 隐藏文章示例
-published: 2024-01-15
+published: 2024-01-15T00:00:00.000Z
 description: 这是一个不在主页显示但在archive页面可见的文章示例。
-tags: [示例, 隐藏]
+tags:
+  - 示例
+  - 隐藏
 category: 示例
 draft: false
 hidden: true
+updated: 2025-12-18T13:58:53.768Z
 ---
 
 # 这是一篇隐藏文章

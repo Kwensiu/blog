@@ -1,11 +1,14 @@
 ---
 title: 在贴文中嵌入视频
-published: 2023-08-01
+published: 2023-08-01T00:00:00.000Z
 description: 将在这里介绍如何在贴文内嵌入视频
-tags: [示例, 视频]
+tags:
+  - 示例
+  - 视频
 category: 示例
 draft: false
 hidden: true
+updated: 2025-12-18T13:58:53.788Z
 ---
 
 只需从YouTube或其他平台复制嵌入代码，并粘贴到markdown文件中。
