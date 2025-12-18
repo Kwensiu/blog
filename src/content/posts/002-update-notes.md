@@ -21,10 +21,17 @@ lang: zh
 ---
 
 <details>
-<summary>v1.0.11 - 2025-12-18 - [大图查看]</summary>
+<summary>v1.0.12 - 2025-12-18 - [Dock重构]</summary>
 
-```
-feat(post): 调整文章卡片与元数据显示样式及布局
+refactor(dock): 将 Dock 组件的*颜色*与*亮暗色*按钮改为*归档*与*关于*页面  
+feat(image-viewer): 尝试修复图片查看器滚轮会上下滑动而非缩放的问题  
+
+</details>
+
+<details>
+<summary>v1.0.11 - 2025-12-18</summary>
+
+feat(post): 调整文章卡片与元数据显示样式及布局  
 
 - 将置顶标签从文章卡片中移至新位置并调整样式
 - 为 PostMeta 组件新增 `alignRight` 属性以支持内容右对齐
@@ -34,51 +41,43 @@ feat(post): 调整文章卡片与元数据显示样式及布局
 - 更新文章文件中的 published 和 updated 时间格式
 - 修正页面底部导航按钮布局问题
 - 微调 CSS 样式变量，提升视觉一致性
-```
 
 </details>
 
 <details>
 <summary>v1.0.10 - 2025-12-18 - [大图查看]</summary>
 
-```
-feat(image): 为 ImageWrapper 添加 PhotoSwipe 支持及相关属性
-feat(layout): 扩展 PhotoSwipe 配置并支持 Banner 图片展示
-feat: 添加updated字段显示贴文更新日期
-fix(posts): 修改文章页面底部导航按钮布局
-```
+feat(image): 为 ImageWrapper 添加 PhotoSwipe 支持及相关属性  
+feat(layout): 扩展 PhotoSwipe 配置并支持 Banner 图片展示  
+feat(posts): 添加updated字段显示贴文更新日期  
+fix(posts): 修改文章页面底部导航按钮布局  
 
 </details>
 
 <details>
 <summary>v1.0.9 - 2025-12-18</summary>
 
-```
-fix(Dock): 调整Dock组件隐藏状态，调整Dock暗色以及搜索栏背景色，以提高可视度
-feat(posts): 重命名文章文件名并调整分类标签
-- 同时调整了部分页面的Tag与分类
-```
+fix(Dock): 调整Dock组件隐藏状态，调整Dock暗色以及搜索栏背景色，以提高可视度  
+feat(posts): 重命名文章文件名并调整分类标签  
+- 同时调整了部分页面的Tag与分类  
 
 </details>
 
 <details>
 <summary>v1.0.8 - 2025-12-18</summary>
 
-```
-docs: 添加 Biome 格式化代码记录文章
-docs: 添加更新日志板块，并为导航页添加链接
-docs: 更新软件推荐贴文内容
-refactor(dock): run `pnpm format`
-refactor(dock): 手动执行Biome相关命令格式化代码
-```
+docs: 添加 Biome 格式化代码记录文章  
+docs: 添加更新日志板块，并为导航页添加链接  
+docs: 更新软件推荐贴文内容  
+refactor(dock): run `pnpm format`  
+refactor(dock): 手动执行Biome相关命令格式化代码  
 
 </details>
 
 <details>
 <summary>v1.0.7 - 2025-12-18</summary>
 
-```
-feat(dock): 优化 dock 组件交互与样式
+feat(dock): 优化 dock 组件交互与样式  
 
 - 为 Svelte 文件添加 VSCode 格式化配置
 - 重构 Dock.svelte 组件逻辑和结构，提升可读性
@@ -89,43 +88,32 @@ feat(dock): 优化 dock 组件交互与样式
 - 实现搜索面板动态宽度调整功能
 - 增强搜索结果展示与键盘交互支持
 - 修复部分 DOM 操作和事件监听器清理问题
-```
 
 </details>
 
 <details>
 <summary>v1.0.6 - 2025-12-18</summary>
 
-```
-docs(posts): 更新导航页描述和内容
-```
+docs(posts): 更新导航页描述和内容  
 
 </details>
 
 <details>
 <summary>v1.0.5 - 2025-12-18 - [添加Dock]</summary>
 
-```
-feat(dock): 添加底部悬浮 Dock 组件及搜索、主题切换功能
-
-新增了一个基于 Svelte 的底部悬浮 Dock 组件，包含以下特性：
+feat(dock): 添加底部悬浮 Dock 组件及搜索、主题切换功能  
 - 滚动时自动显示/隐藏
 - 集成搜索面板入口（DockSearch）
 - 集成颜色设置面板入口（DockColorSettings）
 - 支持亮色/暗色/自动模式切换
 - 包含返回顶部按钮与主页跳转链接
 
-同时调整了主布局结构以引入该组件，并为防止移动端 Footer 与 Dock 冲突，
-在 MainGridLayout 中增加了底部内边距。
-```
-
 </details>
 
 <details>
 <summary>v1.0.4 - 2025-12-18 - [Navbar模糊]</summary>
 
-```
-feat(navbar): 更新Navbar样式并优化动画效果
+feat(navbar): 更新Navbar样式并优化动画效果  
 
 - 将 `#navbar` 的类名从 `onload-animation` 更改为 `navbar-slide`，并添加滑入动画
 - 更新Navbar背景样式，增加毛玻璃效果与边框
@@ -133,32 +121,26 @@ feat(navbar): 更新Navbar样式并优化动画效果
 - 在 Tailwind 配置中扩展 backdrop blur 和高度工具类
 - 修改站点标题
 - 移除文章页底部mb-4
-```
 
 </details>
 
 <details>
 <summary>v1.0.3 - 2025-12-16</summary>
 
-```
-feat(astro): 更新部署配置以支持 GitHub Pages
-```
+feat(astro): 更新部署配置以支持 GitHub Pages  
 
 </details>
 
 <details>
 <summary>v1.0.2 - 2025-12-16</summary>
 
-```
-build(astro): 更新站点配置中的 vercel 部署地址
-```
+build(astro): 更新站点配置中的 vercel 部署地址  
 
 </details>
 
 <details>
 <summary>v1.0.1 - 2025-12-16</summary>
 
-```
 小小的更新
 
 - 更新settings.json
@@ -167,39 +149,33 @@ build(astro): 更新站点配置中的 vercel 部署地址
 - 调整 Profile 卡片布局与响应式样式
 - 更新文章分类与草稿状态
 - 移除 GitHub 链接导航项
-```
 
 </details>
 
 <details>
 <summary>v1.0.0 - 2025-12-16 - [部署] </summary>
 
-```
 世界加载完成：现已支持 Vercel 快递直达
 
 - 为世界注入了 Vercel 配置
-```
 
 </details>
 
 <details>
 <summary>v0.0.2 - 2025-12-16</summary>
 
-```
 正在初始化世界: 生成个性化内容
 
 - 可爱的东西正在涌现，Ciallo
 - 似乎混入了外来之物
 - 创世者初具人形
 - 有东西被藏匿了...它们在哪
-```
 
 </details>
 
 <details>
  <summary>v0.0.1 - 2025-12-16</summary>
 
-```
 正在初始化世界: 调整世界生成类型
 
 - 现在全世界都在讲中国话
@@ -207,6 +183,5 @@ build(astro): 更新站点配置中的 vercel 部署地址
 - 事物被赋予了顶置功能
 - 微调日夜更替的构架
 - 为基岩添加了更多依赖
-```
 
 </details>
