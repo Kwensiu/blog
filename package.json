@@ -6,7 +6,6 @@
     "dev": "astro dev",
     "start": "astro dev",
     "check": "astro check",
-    "prebuild": "node scripts/update-timestamp.js update",
     "build": "astro build && pagefind --site dist",
     "preview": "astro preview",
     "astro": "astro",
@@ -14,8 +13,6 @@
     "new-post": "node scripts/new-post.js",
     "format": "biome format --write ./src",
     "lint": "biome check --write ./src",
-    "update-timestamps": "node scripts/update-timestamp.js update",
-    "watch-timestamps": "node scripts/update-timestamp.js watch",
     "preinstall": "npx only-allow pnpm"
   },
   "dependencies": {
