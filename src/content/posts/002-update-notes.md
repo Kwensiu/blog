@@ -23,8 +23,8 @@ lang: zh
 <details>
 <summary>v1.0.15 - 2025-12-20</summary>
 
-feat(PostMeta): 添加文章多语言版本支持与语言切换按钮
-docs(dock-component): 添加 Dock 组件集成指南的中英文文档
+feat(PostMeta): 添加文章多语言版本支持与语言切换按钮  
+docs(dock-component): 添加 Dock 组件集成指南的中英文文档  
 
 - 同时优化了"更新日期"组件的显示
 

@@ -18,7 +18,7 @@ let searchInputElement: HTMLInputElement;
 // Mock data for development environment - customize as needed
 const fakeResult: SearchResult[] = [
 	{
-		url: url("/"),
+		url: url("/posts/nggyu/"),
 		meta: {
 			title: "Never Gonna Give You Up",
 		},
@@ -244,7 +244,7 @@ $: if (initialized && keyword) {
           <div
             role="button"
             tabindex="0"
-            class="transition first-of-type:mt-1 group block rounded-3xl text-lg px-3 py-2 hover:bg-[var(--btn-plain-bg-hover)] active:bg-[var(--btn-plain-bg-active)] cursor-pointer"
+            class="transition first-of-type:mt-1 group block rounded-2xl text-lg px-3 py-2 hover:bg-[var(--btn-plain-bg-hover)] active:bg-[var(--btn-plain-bg-active)] cursor-pointer"
             on:click={(e) => navigateToResult(e, item.url)}
             on:keydown={(e) => {
               if (e.key === 'Enter' || e.key === ' ') {

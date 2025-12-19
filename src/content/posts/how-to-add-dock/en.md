@@ -68,7 +68,7 @@ import Dock from "@components/dock/Dock.svelte";
 
 ---
 
-# Customizatio
+# Customization
 
 ## Configuration Options
 

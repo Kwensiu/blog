@@ -9,7 +9,7 @@ tags:
   - 效率
 category: 开发
 draft: false
-lang: ''
+lang: 'zh_CN'
 updated: 2025-12-18T15:17:16.000Z
 ---
 

@@ -6,6 +6,7 @@ image: ./cover.jpeg
 tags: ["Fuwari", "博客", "自定义"]
 category: 指南
 draft: false
+lang: zh_CN
 hidden: true
 updated: 2025-12-18T13:58:53.762Z
 ---

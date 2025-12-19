@@ -92,7 +92,7 @@ function navigateToAbout(event: Event) {
     <a
       href={url(config.homePath)}
       class="btn-plain scale-animation rounded-3xl w-11 h-11 active:scale-90"
-      aria-label="主页"
+      aria-label="Home Page"
       on:click={navigateHome}
     >
       <Icon
@@ -105,7 +105,7 @@ function navigateToAbout(event: Event) {
     <button
       class="btn-dock-primary items-center justify-center mx-1"
       on:click={scrollToTop}
-      aria-label="回到顶部"
+      aria-label="Return to Top"
     >
       <Icon
         icon="material-symbols:keyboard-arrow-up-rounded"
@@ -117,7 +117,7 @@ function navigateToAbout(event: Event) {
     <a
       href={url(config.archivePath)}
       class="btn-plain scale-animation rounded-3xl w-11 h-11 active:scale-90"
-      aria-label="归档"
+      aria-label="Archive Page"
       on:click={navigateToArchive}
     >
       <Icon
@@ -130,7 +130,7 @@ function navigateToAbout(event: Event) {
     <a
       href={url(config.aboutPath)}
       class="btn-plain scale-animation rounded-3xl w-11 h-11 active:scale-90"
-      aria-label="关于"
+      aria-label="About Page"
       on:click={navigateToAbout}
     >
       <Icon
@@ -168,3 +168,4 @@ function navigateToAbout(event: Event) {
     transform: scale(1.05);
   }
 </style>
+

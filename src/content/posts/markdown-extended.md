@@ -10,6 +10,7 @@ tags:
   - Fuwari
 category: 示例
 draft: false
+lang: zh_CN
 hidden: true
 ---
 

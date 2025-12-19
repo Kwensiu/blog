@@ -8,6 +8,7 @@ tags:
   - 收藏
 category: 软件
 draft: false
+lang: zh_CN
 pin: false
 pinOrder: 0
 ---

@@ -5,6 +5,7 @@ description: 一个简单的Markdown博客文章的示例。
 tags: [Markdown, 博客, 演示]
 category: 示例
 draft: true
+lang: zh_CN
 hidden: true
 ---
 
