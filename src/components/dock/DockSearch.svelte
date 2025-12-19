@@ -57,7 +57,7 @@ function resetSearch(): void {
 
 function navigateToResult(event: Event, itemUrl: string): void {
 	event.preventDefault();
-	hide(); // 隐藏搜索面板
+	hide(); // Hide search panel
 	if (window.swup) {
 		window.swup.navigate(itemUrl);
 	} else {
@@ -65,7 +65,6 @@ function navigateToResult(event: Event, itemUrl: string): void {
 	}
 }
 
-// 事件处理函数
 function handleClickOutside(event: Event): void {
 	const target = event.target as HTMLElement;
 	if (
@@ -76,7 +75,6 @@ function handleClickOutside(event: Event): void {
 	}
 }
 
-// 搜索处理函数
 async function search(): Promise<void> {
 	if (!keyword) {
 		result = [];
@@ -107,14 +105,13 @@ async function search(): Promise<void> {
 
 $: hasResults = result.length > 0;
 
-// 动态计算面板宽度
 $: panelWidth = (() => {
-	// 未搜索状态 - 保持较短的宽度
+	// When not searching
 	if (!keyword?.trim()) return "30rem";
 
-	// 有搜索结果状态 - 根据内容长度调整宽度
+	// When search results are available
 	if (hasResults) {
-		// 计算最长标题的估算宽度（添加空值检查）
+		// Calculate the estimated width of the longest heading
 		const maxLength = Math.max(
 			...result.map(
 				(item) =>
@@ -123,7 +120,7 @@ $: panelWidth = (() => {
 			),
 		);
 
-		// 根据内容长度计算宽度，设置最小和最大限制
+		// Calculate the width based on the content length
 		const minWidth = 35; // rem
 		const maxWidth = 55; // rem
 		const calculatedWidth = Math.min(
@@ -133,15 +130,13 @@ $: panelWidth = (() => {
 		return `${calculatedWidth}rem`;
 	}
 
-	// 正在搜索中或无结果状态 - 中等宽度
+	// When searching or no results found
 	return "35rem";
 })();
 
-// 设置CSS变量（使用节流优化性能）
+// Optimize performance using throttling
 let lastPanelWidth = "";
 let updateTimeout: ReturnType<typeof setTimeout>;
-
-// 搜索节流
 let searchTimeout: ReturnType<typeof setTimeout>;
 
 function updatePanelWidth(width: string) {
@@ -155,13 +150,13 @@ function updatePanelWidth(width: string) {
 				);
 				lastPanelWidth = width;
 			}
-		}, 50); // 50ms节流
+		}, 50); // 50ms throttling
 	}
 }
 
 $: updatePanelWidth(panelWidth);
 
-// 生命周期管理
+// Lifecycle Management
 onMount(() => {
 	document.addEventListener("click", handleClickOutside);
 
@@ -208,12 +203,12 @@ onMount(() => {
 	};
 });
 
-// 响应式搜索（带节流）
+// Responsive Search with throttling
 $: if (initialized && keyword) {
 	if (searchTimeout) clearTimeout(searchTimeout);
 	searchTimeout = setTimeout(async () => {
 		await search();
-	}, 300); // 300ms节流
+	}, 300); // 300ms throttling
 }
 </script>
 
@@ -242,7 +237,7 @@ $: if (initialized && keyword) {
     class:scale-95={!isVisible}
     class:scale-100={isVisible}
   >
-    <!-- 搜索结果 -->
+    <!-- Search Result Panel -->
     {#if hasResults}
       <div class="max-h-[50vh] overflow-y-auto mb-2">
         {#each result as item}
@@ -279,7 +274,7 @@ $: if (initialized && keyword) {
       <div class="py-4 text-center text-50 mb-2">No results found</div>
     {/if}
 
-    <!-- 搜索框 -->
+    <!-- Search Panel -->
     <div class="relative flex items-center h-11 rounded-3xl bg-black/[0.04] hover:bg-black/[0.06] focus-within:bg-black/[0.06] dark:bg-white/5 dark:hover:bg-white/10 dark:focus-within:bg-white/10">
       <Icon
         icon="material-symbols:search"
@@ -306,7 +301,7 @@ $: if (initialized && keyword) {
 </div>
 
 <style>
-  /* 隐藏滚动条但保留功能 */
+  /* Hide the scrollbar but retain functionality */
   #dock-search-panel::-webkit-scrollbar {
     width: 6px;
   }
@@ -320,7 +315,6 @@ $: if (initialized && keyword) {
     border-radius: 3px;
   }
 
-  /* 优化过渡动画 */
   #dock-search-panel {
     transition: width 0.3s ease-in-out, transform 0.3s ease-in-out;
     max-width: var(--search-panel-width, 30rem);

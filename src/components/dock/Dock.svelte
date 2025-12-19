@@ -64,7 +64,7 @@ function navigateToAbout(event: Event) {
 }
 </script>
 
-<!-- Dock组件 -->
+<!-- Dock -->
 <div
   id="dock"
   role="toolbar"
@@ -86,7 +86,6 @@ function navigateToAbout(event: Event) {
     class="relative flex items-center justify-center h-full px-6 will-change-transform"
   >
     <!-- Search Button -->
-    <!-- 搜索按钮 -->
     <DockSearch />
 
     <!-- Home Button -->

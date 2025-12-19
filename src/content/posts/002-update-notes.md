@@ -23,7 +23,7 @@ lang: zh
 <details>
 <summary>v1.0.14 - 2025-12-19 - [Dock重构]</summary>
 
-feat(dock): 重构 Dock 组件并增强可配置性，初步添加EN文档介绍Dock组件
+feat(dock): 重构 Dock 相关组件并增强可配置性，完善CN/EN文档介绍Dock组件
 
 - 引入 config 对象统一管理滚动阈值和导航路径，提升组件灵活性
 - 简化滚动逻辑，仅在滚动超过设定阈值时显示 Dock
