@@ -12,17 +12,17 @@ export const siteConfig: SiteConfig = {
 	subtitle: "ollaiƆ",
 	lang: "zh_CN", // Language code, e.g. 'en', 'zh_CN', 'ja', etc.
 	themeColor: {
-		hue: 250, // Default hue for the theme color, from 0 to 360. e.g. red: 0, teal: 200, cyan: 250, pink: 345
-		fixed: false, // Hide the theme color picker for visitors
+		hue: 80, // Default hue for the theme color, from 0 to 360. e.g. red: 0, teal: 200, cyan: 250, pink: 345
+		fixed: true, // Hide the theme color picker for visitors
 	},
 	banner: {
 		enable: true,
 		src: "https://i.imgant.com/v2/ThzsI6r.jpeg", // Relative to the /src directory. Relative to the /public directory if it starts with '/'
 		position: "center", // Equivalent to object-position, only supports 'top', 'center', 'bottom'. 'center' by default
 		credit: {
-			enable: false, // Display the credit text of the banner image
-			text: "", // Credit text to be displayed
-			url: "", // (Optional) URL link to the original artwork or artist's page
+			enable: true, // Display the credit text of the banner image
+			text: "プロセカ", // Credit text to be displayed
+			url: "https://projectsekai.fandom.com/wiki/Shinonome_Ena/Cards?file=Beyond_My_Boundaries_T.png", // (Optional) URL link to the original artwork or artist's page
 		},
 	},
 	toc: {
