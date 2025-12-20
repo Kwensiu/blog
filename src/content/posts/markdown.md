@@ -4,12 +4,17 @@ published: 2023-10-01
 description: 一个简单的Markdown博客文章的示例。
 tags: [Markdown, 博客, 演示]
 category: 示例
-draft: true
+draft: false
 lang: zh_CN
+updated: 2025-12-21T02:44:00.000Z
 hidden: true
 ---
 
-# 一个 h1 头部
+:::Warning
+我在翻译时发现有很多功能“似乎”没有正确实现，未知原因，故暂停翻译
+:::
+
+# 一个 h1 标题
 
 段落之间用一个空行隔开。
 
@@ -33,31 +38,30 @@ hidden: true
 三个点 ... 会被转换为省略号  
 Unicode 也是支持的 ☺  
 
-## An h2 header
+## 这是 h2 标题
 
-Here's a numbered list:
+以下是一个编号列表:
 
-1. first item
-2. second item
-3. third item
+1. 第1项
+2. 第2️⃣项
+3. 第叁项
 
-Note again how the actual text starts at 4 columns in (4 characters
-from the left side). Here's a code sample:
+请注意，实际文本是从左侧第 4 列（第 4 个字符）开始的。以下是代码示例：
 
-    # Let me re-iterate ...
+    # 让我再重申一下 ...
     for i in 1 .. 10 { do-something(i) }
 
-As you probably guessed, indented 4 spaces. By the way, instead of
-indenting the block, you can use delimited blocks, if you like:
+正如你可能已经猜到的，这里缩进了 4 个空格。
+顺便说一下，除了缩进代码块之外，如果你愿意，也可以使用分隔符分隔的代码块：
 
 ```
 define foobar() {
-    print "Welcome to flavor country!";
+    print "欢迎来到风味之乡!";
 }
 ```
 
-(which makes copying & pasting easier). You can optionally mark the
-delimited block for Pandoc to syntax highlight it:
+（这样可以更方便地复制粘贴）。您可以选择性地  
+标记以下分隔符块，以便 Pandoc 对其进行语法高亮显示：
 
 ```python
 import time
@@ -68,55 +72,54 @@ for i in range(10):
     print i
 ```
 
-### An h3 header
+### 这是一个一个 h3 标题
 
-Now a nested list:
+现在是一个嵌套列表:
 
-1. First, get these ingredients:
+1. 首先，准备以下食材:
 
-    - carrots
-    - celery
-    - lentils
+    - 胡萝卜
+    - 芹菜(我不喜欢吃)
+    - 扁豆
 
-2. Boil some water.
+2. 烧开水
 
-3. Dump everything in the pot and follow
-    this algorithm:
+3. 将所有食材倒入大锅，并按照下面步骤进行：
+    算法(?)如下:
 
-        find wooden spoon
-        uncover pot
-        stir
-        cover pot
-        balance wooden spoon precariously on pot handle
-        wait 10 minutes
-        goto first step (or shut off burner when done)
+        找到木勺
+        打开锅盖
+        搅拌
+        盖上锅盖
+        将木勺小心地放在锅柄上
+        等待十分钟
+        返回第一步 (或者关火)
 
-    Do not bump wooden spoon or it will fall.
+    不要碰撞木勺，否则它会掉下来。
 
-Notice again how text always lines up on 4-space indents (including
-that last line which continues item 3 above).
+再次注意文本总是以 4 个空格的缩进对齐（包括  
+上面第 3 项的最后一行）。
 
-Here's a link to [a website](http://foo.bar), to a [local
-doc](local-doc.html), and to a [section heading in the current
-doc](#an-h2-header). Here's a footnote [^1].
+这里有一个指向[网站](http://foo.bar)的链接，  
+一个指向[本地文档](local-doc.html)的链接，  
+以及一个指向[当前文档中的章节标题](#an-h2-header)的链接。这里还有一个脚注[^1]。
 
-[^1]: Footnote text goes here.
+[^1]: 脚注文字写在这里。
 
-Tables can look like this:
+表格可以像这样：
 
-size material color
+尺寸 材质 颜色
 
----
+-------
 
-9 leather brown
-10 hemp canvas natural
-11 glass transparent
+9 棕色皮革
+10 天然麻帆布
+11 透明玻璃
 
-Table: Shoes, their sizes, and what they're made of
+表格：鞋子、尺码和材质
 
-(The above is the caption for the table.) Pandoc also supports
-multi-line tables:
-
+（以上为表格标题。）Pandoc 还支持
+多行表格：
 ---
 
 keyword text

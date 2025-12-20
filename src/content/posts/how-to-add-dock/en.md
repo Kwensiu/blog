@@ -8,7 +8,7 @@ category: '开发'
 draft: false 
 lang: 'en'
 cn: "how-to-add-dock/cn/"
-updated: 2025-12-20T06:01:00.000Z
+updated: 2025-12-21T02:44:01.000Z
 hidden: true
 ---
 
@@ -16,12 +16,11 @@ _Feel free to point out any issues._
 
 # Scroll down now to see the Dock.
 
+# Component Overview
 The Dock component solves three main problems:
 1. Inability to search or switch pages while reading
 2. The absence of the "Back to Top" button on small and medium-sized screens
 3. A more polished blog experience
-
-# Component Overview
 
 ## Main Features
 
@@ -558,7 +557,9 @@ $: if (initialized && keyword) {
 
 1. Import and add the Dock component to your main layout file (usually `src/layouts/Layout.astro`):
 2. Add `<Dock client:only="svelte" />` before `</body>`
+:::note
 > Use `client:only="svelte"` to avoid hydration issues
+:::
 
 ```js title="Layout.astro" ins={3, 11-12} showLineNumbers=false
 // ...
