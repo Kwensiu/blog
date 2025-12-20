@@ -177,7 +177,7 @@ async function savePost() {
 			.replace(/[^\w\s-]/g, "")
 			.replace(/\s+/g, "-")
 			.replace(/-+/g, "-")
-		.trim();
+			.trim();
 
 		if (!slug) {
 			throw new Error("标题格式不正确，无法生成有效的文件名");
@@ -196,20 +196,22 @@ lang: "${lang}"
 ---`;
 
 		const fullContent = `${frontmatter}\n\n${content}`;
-		
+
 		// 创建Blob对象用于下载
-		const blob = new Blob([fullContent], { type: 'text/markdown;charset=utf-8' });
+		const blob = new Blob([fullContent], {
+			type: "text/markdown;charset=utf-8",
+		});
 		const url = URL.createObjectURL(blob);
-		
+
 		// 创建下载链接
-		const a = document.createElement('a');
+		const a = document.createElement("a");
 		a.href = url;
 		a.download = `${slug}.md`;
-		
+
 		// 触发下载
 		document.body.appendChild(a);
 		a.click();
-		
+
 		// 清理
 		document.body.removeChild(a);
 		URL.revokeObjectURL(url);
@@ -253,7 +255,7 @@ async function uploadPost() {
 			.replace(/[^\w\s-]/g, "")
 			.replace(/\s+/g, "-")
 			.replace(/-+/g, "-")
-		.trim();
+			.trim();
 
 		if (!slug) {
 			throw new Error("标题格式不正确，无法生成有效的文件名");
@@ -274,7 +276,7 @@ lang: "${lang}"
 		const fullContent = `${frontmatter}\n\n${content}`;
 
 		// 发送到服务器保存
-		const response = await fetch("/mSpace/api/save-post/", {
+		const response = await fetch("/blog/api/save-post/", {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
