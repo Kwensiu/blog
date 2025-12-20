@@ -557,7 +557,6 @@ $: if (initialized && keyword) {
 ## 2. Import into Layout
 
 1. Import and add the Dock component to your main layout file (usually `src/layouts/Layout.astro`):
-
 2. Add `<Dock client:only="svelte" />` before `</body>`
 > Use `client:only="svelte"` to avoid hydration issues
 

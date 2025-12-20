@@ -21,6 +21,26 @@ lang: zh
 ---
 
 <details>
+<summary>v1.0.18 - 2025-12-20</summary>
+
+feat(sytles): 完善文本横线的显示，用伪元素方式解决链接文本的虚线闪烁问题
+
+- 同时为extensions.json添加建议拓展方便同步
+
+</details>
+
+<details>
+<summary>v1.0.17 - 2025-12-20</summary>
+
+日常维护：
+
+- 优化banner图片
+- 删除Vercel部署残留文件
+- 更新 Dock组件集成指南cn/en文档
+
+</details>
+
+<details>
 <summary>v1.0.16 - 2025-12-20</summary>
 
 日常维护:

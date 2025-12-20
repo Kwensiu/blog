@@ -22,21 +22,92 @@
     /* 修改为文字下方横线效果，模仿记事本风格 */
     p {
         @apply relative leading-relaxed py-1;
-        border-bottom: 1px solid var(--line-color);
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+        
+        /* 使用伪元素创建横线，只覆盖文字宽度 */
+        &::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0.5rem;
+            right: 0.5rem;
+            height: 1px;
+            background-color: var(--line-color);
+        }
+    }
+    
+    /* 为列表元素添加横线效果 */
+    ul, ol {
+        @apply leading-relaxed;
+        li {
+            @apply py-1 relative;
+            padding-left: 0.5rem;
+            padding-right: 0.5rem;
+            
+            /* 使用伪元素创建横线，只覆盖文字宽度 */
+            &::after {
+                content: '';
+                position: absolute;
+                bottom: 0;
+                left: 0.5rem;
+                right: 0.5rem;
+                height: 1px;
+                background-color: var(--line-color);
+            }
+        }
+    }
+
+    /* 为标题添加横线效果 */
+    h1, h2, h3, h4, h5, h6 {
+        @apply py-1 relative;
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+        
+        /* 使用伪元素创建横线，只覆盖文字宽度 */
+        &::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0.5rem;
+            right: 0.5rem;
+            height: 1px;
+            background-color: var(--line-color);
+        }
     }
 
     a:not(.no-styling) {
-        @apply relative bg-none link font-medium text-[var(--primary)]
-        underline decoration-[var(--link-underline)] decoration-1 decoration-dashed underline-offset-4;
-        box-decoration-break: clone;
-        -webkit-box-decoration-break: clone;
-        display: inline-block;
+        @apply relative font-medium text-[var(--primary)];
+        position: relative;
+        display: inline-block; /* 改为inline-block以支持padding */
+        text-decoration: none; /* 移除所有默认下划线 */
+        padding: 0.2rem 0.5rem; /* 添加内边距 */
+        margin: -0.25rem 0rem; /* 负外边距抵消内边距对布局的影响 */
+        border-radius: 0.375rem; /* 添加圆角 */
+        transition: background-color 0.2s ease;
+        
+        /* 使用伪元素创建虚线效果 */
+        &::after {
+            content: '';
+            position: absolute;
+            left: 0.5rem; /* 调整位置以考虑padding */
+            right: 0.5rem;
+            bottom: 0.25rem; /* 调整位置以考虑padding */
+            height: 1px;
+            background-image: linear-gradient(to right, var(--link-underline) 50%, transparent 50%);
+            background-size: 8px 1px; /* 虚线长度和间距 */
+            background-repeat: repeat-x;
+            transition: opacity 0.2s ease;
+            opacity: 1;
+        }
     
         &:hover, &:active {
-            @apply decoration-transparent;
             background: var(--btn-plain-bg-hover);
-            border-bottom: 1px dashed var(--link-hover);
-            text-decoration: none;
+            
+            /* 隐藏默认虚线 */
+            &::after {
+                opacity: 0;
+            }
         }
     }
 

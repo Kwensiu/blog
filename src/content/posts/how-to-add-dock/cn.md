@@ -556,7 +556,6 @@ $: if (initialized && keyword) {
 ## 2. 导入到 Layout
 
 1. 将 Dock 组件导入并添加到 Layout 文件（`src/layouts/Layout.astro`）：
-
 2. 在 `</body>` 前添加 `<Dock client:only="svelte" />`
 :::note
 使用 `client:only="svelte"` 避免水合问题
