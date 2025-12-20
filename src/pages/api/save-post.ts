@@ -2,8 +2,6 @@ import { mkdir, writeFile } from "node:fs/promises";
 import { join } from "node:path";
 import type { APIRoute } from "astro";
 
-export const prerender = false;
-
 export const POST: APIRoute = async ({ request }) => {
 	try {
 		const { filename, content } = await request.json();
