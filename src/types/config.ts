@@ -94,7 +94,7 @@ export type BlogPostData = {
 	category?: string;
 	pin?: boolean;
 	pinOrder?: number;
-	hidden?: boolean;
+	hidden?: "none" | "part" | "all";
 	prevTitle?: string;
 	prevSlug?: string;
 	nextTitle?: string;

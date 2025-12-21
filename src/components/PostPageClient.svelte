@@ -57,14 +57,14 @@ function filterPostsByLanguage() {
 		const langAttr = card.getAttribute("data-lang");
 		const hiddenAttr = card.getAttribute("data-hidden");
 
-		// Skip hidden posts regardless of language
-		if (hiddenAttr === "true") {
+		// Skip fully hidden posts regardless of language
+		if (hiddenAttr === "all") {
 			(card as HTMLElement).style.display = "none";
 			return;
 		}
 
 		// If post has no lang field, show it in all languages (default behavior)
-		if (!langAttr) {
+		if (!langAttr || langAttr.trim() === "") {
 			(card as HTMLElement).style.display = "block";
 			return;
 		}

@@ -22,7 +22,7 @@ interface Post {
 		category?: string;
 		published: Date;
 		lang?: string;
-		hidden?: boolean;
+		hidden?: "none" | "part" | "all";
 	};
 }
 
@@ -78,11 +78,6 @@ function filterAndGroupPosts() {
 
 	// Filter by language
 	filteredPosts = filteredPosts.filter((post) => {
-		// Skip hidden posts regardless of language
-		if (post.data.hidden) {
-			return false;
-		}
-
 		// If post has no lang field, show it in all languages (default behavior)
 		if (!post.data.lang) {
 			return true;

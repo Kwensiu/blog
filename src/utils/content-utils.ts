@@ -47,10 +47,10 @@ export async function getSortedPosts() {
 	return sorted;
 }
 
-// Get the articles displayed on the homepage (excluding hidden articles)
+// Get the articles displayed on the homepage (excluding fully hidden articles)
 export async function getVisiblePosts() {
 	const allPosts = await getRawSortedPosts();
-	const visiblePosts = allPosts.filter((post) => post.data.hidden !== true);
+	const visiblePosts = allPosts.filter((post) => post.data.hidden !== "all");
 
 	for (let i = 1; i < visiblePosts.length; i++) {
 		visiblePosts[i].data.nextSlug = visiblePosts[i - 1].slug;
@@ -62,6 +62,23 @@ export async function getVisiblePosts() {
 	}
 
 	return visiblePosts;
+}
+
+// Get the articles displayed on the archive page (excluding fully hidden articles, but including partially hidden)
+export async function getArchivePosts() {
+	const allPosts = await getRawSortedPosts();
+	const archivePosts = allPosts.filter((post) => post.data.hidden !== "all");
+
+	for (let i = 1; i < archivePosts.length; i++) {
+		archivePosts[i].data.nextSlug = archivePosts[i - 1].slug;
+		archivePosts[i].data.nextTitle = archivePosts[i - 1].data.title;
+	}
+	for (let i = 0; i < archivePosts.length - 1; i++) {
+		archivePosts[i].data.prevSlug = archivePosts[i + 1].slug;
+		archivePosts[i].data.prevTitle = archivePosts[i + 1].data.title;
+	}
+
+	return archivePosts;
 }
 export type PostForList = {
 	slug: string;
@@ -102,6 +119,18 @@ export async function getTagList(): Promise<Tag[]> {
 	});
 
 	return keys.map((key) => ({ name: key, count: countMap[key] }));
+}
+
+export async function getArchivePostsList(): Promise<PostForList[]> {
+	const archiveFullPosts = await getArchivePosts();
+
+	// delete post.body
+	const archivePostsList = archiveFullPosts.map((post) => ({
+		slug: post.slug,
+		data: post.data,
+	}));
+
+	return archivePostsList;
 }
 
 export type Category = {

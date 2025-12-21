@@ -21,7 +21,7 @@ const postsCollection = defineCollection({
 		pinOrder: z.number().optional().default(999),
 
 		/* Hidden functionality */
-		hidden: z.boolean().optional().default(false),
+		hidden: z.enum(["none", "part", "all"]).optional().default("none"),
 
 		/* For internal use */
 		prevTitle: z.string().default(""),
