@@ -15,7 +15,7 @@ A static blog template built with [Astro](https://astro.build).
 
 ## ✨ What New
 
-- [x] A Dcok
+- [x] A Dock
 - [x] Full support i18n
 - [x] Posts Pinned
 - [x] Posts Hidden
@@ -56,7 +56,7 @@ pin: false
 pinOrder: 0
 hidden: none  # none | part | all
 // en: ''     # Set English version post path to create a version change bottom in post
-// cn: '      # Set Chinese ...
+// cn: ''     # Set Chinese ...
 ```
 ## ⚡ Commands
 
