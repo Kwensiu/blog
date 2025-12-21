@@ -19,14 +19,14 @@ export function detectUserLanguage(): string {
 	}
 
 	// Get browser language
-	const browserLang = navigator.language || navigator.languages?.[0] || "zh-CN";
+	const browserLang = navigator.language || navigator.languages?.[0] || "zh_CN";
 
 	// Normalize language code (convert to lowercase and replace dash with underscore)
 	const normalizedLang = browserLang.toLowerCase().replace("-", "_");
 
 	// Check if we support this language, otherwise fallback to zh_CN
 	const supportedLanguages = [
-		"zh_cn",
+		"zh_CN",
 		/* "zh_tw", */ "en",
 		"ja",
 		"ko",

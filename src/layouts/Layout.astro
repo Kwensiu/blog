@@ -137,7 +137,7 @@ const bannerOffset =
 
 				// Set initial language
 				const language = localStorage.getItem('language') ||
-					(navigator.language || navigator.languages?.[0] || 'zh-CN').toLowerCase().replace('-', '_');
+					(navigator.language || navigator.languages?.[0] || 'zh_CN').toLowerCase().replace('-', '_');
 				const normalizedLang = language.replace('_', '-');
 				document.documentElement.lang = normalizedLang;
 
