@@ -7,6 +7,69 @@ import {
 import { expressiveCodeConfig } from "@/config";
 import type { LIGHT_DARK_MODE } from "@/types/config";
 
+// Default language
+const DEFAULT_LANGUAGE = "zh_CN";
+
+/**
+ * Detect user's preferred language from browser
+ */
+export function detectUserLanguage(): string {
+	if (typeof navigator === "undefined") {
+		return DEFAULT_LANGUAGE;
+	}
+
+	// Get browser language
+	const browserLang = navigator.language || navigator.languages?.[0] || "zh-CN";
+
+	// Normalize language code (convert to lowercase and replace dash with underscore)
+	const normalizedLang = browserLang.toLowerCase().replace("-", "_");
+
+	// Check if we support this language, otherwise fallback to zh_CN
+	const supportedLanguages = [
+		"zh_cn",
+		/* "zh_tw", */ "en",
+		"ja",
+		"ko",
+		"th",
+		"vi",
+		"id",
+		"tr",
+	];
+
+	// Check exact match first
+	if (supportedLanguages.includes(normalizedLang)) {
+		return normalizedLang;
+	}
+
+	// Check language prefix (e.g., 'zh' for 'zh-CN')
+	const langPrefix = normalizedLang.split("_")[0];
+	const prefixMatches = supportedLanguages.filter((lang) =>
+		lang.startsWith(langPrefix),
+	);
+
+	if (prefixMatches.length > 0) {
+		// Return the first match (prioritize zh_cn for Chinese)
+		return prefixMatches.includes("zh_cn") ? "zh_cn" : prefixMatches[0];
+	}
+
+	return DEFAULT_LANGUAGE;
+}
+
+/**
+ * Get stored language or detect from browser
+ */
+export function getLanguage(): string {
+	const stored = localStorage.getItem("language");
+	return stored || detectUserLanguage();
+}
+
+/**
+ * Set language preference
+ */
+export function setLanguage(lang: string): void {
+	localStorage.setItem("language", lang.toLowerCase());
+}
+
 export function getDefaultHue(): number {
 	const fallback = "250";
 	const configCarrier = document.getElementById("config-carrier");

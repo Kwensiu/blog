@@ -2,7 +2,7 @@
 import { onMount } from "svelte";
 
 import I18nKey from "../i18n/i18nKey";
-import { i18n } from "../i18n/translation";
+import { getCurrentLanguage, i18n } from "../i18n/translation";
 import { getPostUrlBySlug } from "../utils/url-utils";
 
 export let tags: string[];
@@ -21,6 +21,8 @@ interface Post {
 		tags: string[];
 		category?: string;
 		published: Date;
+		lang?: string;
+		hidden?: boolean;
 	};
 }
 
@@ -30,6 +32,35 @@ interface Group {
 }
 
 let groups: Group[] = [];
+let currentLang = getCurrentLanguage();
+
+// Language normalization function
+// Note: Traditional Chinese (zh_TW) support is commented out for Simplified Chinese only usage
+// To enable Traditional Chinese support, uncomment the zh-tw related lines below
+function normalizeLang(lang: string): string {
+	if (!lang) return "";
+	const normalized = lang.toLowerCase().replace("-", "_");
+	// Map common variations
+	const langMap: Record<string, string> = {
+		zh_cn: "zh_cn",
+		//'zh-tw': 'zh_tw', // Commented out: Only Simplified Chinese is used
+		//'zh_hk': 'zh_tw', // Hong Kong uses Traditional Chinese
+		//'zh_mo': 'zh_tw', // Macau uses Traditional Chinese
+		zh_sg: "zh_cn", // Singapore uses Simplified Chinese
+		zh_my: "zh_cn", // Malaysia uses Simplified Chinese
+		en_us: "en",
+		en_gb: "en",
+		en_au: "en",
+		en_ca: "en",
+		ja_jp: "ja",
+		ko_kr: "ko",
+		th_th: "th",
+		vi_vn: "vi",
+		id_id: "id",
+		tr_tr: "tr",
+	};
+	return langMap[normalized] || normalized.split("_")[0];
+}
 
 function formatDate(date: Date) {
 	const month = (date.getMonth() + 1).toString().padStart(2, "0");
@@ -41,9 +72,37 @@ function formatTag(tagList: string[]) {
 	return tagList.map((t) => `#${t}`).join(" ");
 }
 
-onMount(async () => {
+function filterAndGroupPosts() {
 	let filteredPosts: Post[] = sortedPosts;
+	const normalizedCurrentLang = normalizeLang(currentLang);
 
+	// Filter by language
+	filteredPosts = filteredPosts.filter((post) => {
+		// Skip hidden posts regardless of language
+		if (post.data.hidden) {
+			return false;
+		}
+
+		// If post has no lang field, show it in all languages (default behavior)
+		if (!post.data.lang) {
+			return true;
+		}
+
+		const postLang = normalizeLang(post.data.lang);
+
+		// Custom language logic: English posts are shown in all non-Chinese languages
+		// This is a personalized setting for blogs that primarily use Chinese but want English content
+		// available to international users. To revert to standard behavior, replace this block with:
+		// return postLang === normalizedCurrentLang;
+		if (normalizedCurrentLang === "zh_cn") {
+			// In Chinese mode, only show Chinese posts
+			return postLang === "zh_cn";
+		}
+		// In non-Chinese languages, show posts in current language OR English posts
+		return postLang === normalizedCurrentLang || postLang === "en";
+	});
+
+	// Filter by tags
 	if (tags.length > 0) {
 		filteredPosts = filteredPosts.filter(
 			(post) =>
@@ -52,16 +111,19 @@ onMount(async () => {
 		);
 	}
 
+	// Filter by categories
 	if (categories.length > 0) {
 		filteredPosts = filteredPosts.filter(
 			(post) => post.data.category && categories.includes(post.data.category),
 		);
 	}
 
+	// Filter uncategorized
 	if (uncategorized) {
 		filteredPosts = filteredPosts.filter((post) => !post.data.category);
 	}
 
+	// Group by year
 	const grouped = filteredPosts.reduce(
 		(acc, post) => {
 			const year = post.data.published.getFullYear();
@@ -82,6 +144,19 @@ onMount(async () => {
 	groupedPostsArray.sort((a, b) => b.year - a.year);
 
 	groups = groupedPostsArray;
+}
+
+function setupLanguageListener() {
+	// Listen for language changes
+	window.addEventListener("languagechange", (event: any) => {
+		currentLang = event.detail.language;
+		filterAndGroupPosts();
+	});
+}
+
+onMount(async () => {
+	setupLanguageListener();
+	filterAndGroupPosts();
 });
 </script>
 

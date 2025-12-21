@@ -1,4 +1,5 @@
 import { siteConfig } from "../config";
+import { getLanguage } from "../utils/setting-utils";
 import type I18nKey from "./i18nKey";
 import { en } from "./languages/en";
 import { es } from "./languages/es";
@@ -15,7 +16,7 @@ export type Translation = {
 	[K in I18nKey]: string;
 };
 
-const defaultTranslation = en;
+const defaultTranslation = zh_CN; // Default to zh_CN as requested
 
 const map: { [key: string]: Translation } = {
 	es: es,
@@ -24,7 +25,7 @@ const map: { [key: string]: Translation } = {
 	en_gb: en,
 	en_au: en,
 	zh_cn: zh_CN,
-	zh_tw: zh_TW,
+	// zh_tw: zh_TW, // I only use Simplified Chinese in my blog
 	ja: ja,
 	ja_jp: ja,
 	ko: ko,
@@ -42,7 +43,28 @@ export function getTranslation(lang: string): Translation {
 	return map[lang.toLowerCase()] || defaultTranslation;
 }
 
+/**
+ * Get translation based on stored language preference or site config
+ */
 export function i18n(key: I18nKey): string {
-	const lang = siteConfig.lang || "en";
+	// Try to get from localStorage first, fallback to siteConfig
+	let lang: string;
+	try {
+		lang = getLanguage();
+	} catch {
+		// Fallback for SSR or when localStorage is not available
+		lang = siteConfig.lang || "zh_CN";
+	}
 	return getTranslation(lang)[key];
+}
+
+/**
+ * Get current language (for client-side use)
+ */
+export function getCurrentLanguage(): string {
+	try {
+		return getLanguage();
+	} catch {
+		return siteConfig.lang || "zh_CN";
+	}
 }

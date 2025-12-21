@@ -135,6 +135,12 @@ const bannerOffset =
 				const hue = localStorage.getItem('hue') || configHue;
 				document.documentElement.style.setProperty('--hue', hue);
 
+				// Set initial language
+				const language = localStorage.getItem('language') ||
+					(navigator.language || navigator.languages?.[0] || 'zh-CN').toLowerCase().replace('-', '_');
+				const normalizedLang = language.replace('_', '-');
+				document.documentElement.lang = normalizedLang;
+
 				// calculate the --banner-height-extend, which needs to be a multiple of 4 to avoid blurry text
 				// Use requestAnimationFrame to avoid forced reflow
 				requestAnimationFrame(() => {
@@ -384,7 +390,17 @@ function init() {
 /* Load settings when entering the site */
 init();
 
+// Language change listener
+function setupLanguageListener() {
+	window.addEventListener('languagechange', (event: any) => {
+		const newLang = event.detail.language.replace('_', '-');
+		document.documentElement.lang = newLang;
+	});
+}
+
 const setup = () => {
+	setupLanguageListener();
+
 	// TODO: temp solution to change the height of the banner
 /*
 	window.swup.hooks.on('animation:out:start', () => {
@@ -463,6 +479,9 @@ if (window?.swup?.hooks) {
 } else {
 	document.addEventListener('swup:enable', setup)
 }
+
+// Setup language listener even without swup
+setupLanguageListener();
 
 let backToTopBtn = document.getElementById('back-to-top-btn');
 let toc = document.getElementById('toc-wrapper');
