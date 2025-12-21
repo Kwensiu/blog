@@ -6,10 +6,9 @@ image: ''
 tags: [开发, 博客, fuwari]
 category: '开发'
 draft: false 
-lang: 'en'
+lang: en
 cn: "how-to-add-dock/cn/"
 updated: 2025-12-21T02:44:01.000Z
-hidden: true
 ---
 
 _Feel free to point out any issues._

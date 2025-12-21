@@ -9,7 +9,6 @@ tags:
   - 版本记录
 category: 博客
 draft: false
-lang: zh_CN
 ---
 
 # NaN - 0x01

@@ -4,6 +4,7 @@
 		"astro-build.astro-vscode",
 		"sysoev.language-stylus",
 		"svelte.svelte-vscode",
-		"bradlc.vscode-tailwindcss"
+		"bradlc.vscode-tailwindcss",
+		"1yib.svelte-bundle"
 	]
 }
