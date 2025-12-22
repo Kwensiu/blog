@@ -5,7 +5,7 @@
 
     h1, h2, h3, h4, h5, h6 {
         .anchor {
-            @apply transition -m-0.5 ml-[0.2ch] p-0.5 select-none opacity-0 no-underline !important;
+            @apply transition -m-0.5 ml-[0.2ch] p-0.5 select-none opacity-20 no-underline !important;
 
             .anchor-icon {
                 @apply mx-[0.45ch] !important;
@@ -60,20 +60,16 @@
 
     /* 为标题添加横线效果 */
     h1, h2, h3, h4, h5, h6 {
-        @apply py-1 relative;
+        @apply py-1 my-4 relative;
         padding-left: 0.5rem;
         padding-right: 0.5rem;
-        
-        /* 使用伪元素创建横线，只覆盖文字宽度 */
-        &::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0.5rem;
-            right: 0.5rem;
-            height: 1px;
-            background-color: var(--line-color);
-        }
+
+        /* 使用text-decoration创建横线，只覆盖文字宽度 */
+        text-decoration-line: underline;
+        text-decoration-color: var(--line-color);
+        text-decoration-thickness: 1px;
+        text-decoration-skip-ink: none;
+        text-underline-offset: 10px;
     }
 
     a:not(.no-styling) {

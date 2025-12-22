@@ -2,7 +2,7 @@
 
 @layer components {
     .navbar {
-        @apply rounded-[var(--radius-large)] overflow-hidden bg-white/60 transition;
+        @apply rounded-[var(--radius-large)]  backdrop-blur-sm bg-white/80 transition;
     }
     .card-base {
         @apply rounded-[var(--radius-large)] overflow-hidden bg-[var(--card-bg)] transition;
