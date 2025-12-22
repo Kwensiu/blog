@@ -11,8 +11,8 @@ export function pluginLanguageBadge() {
       [data-language]::before {
         position: absolute;
         z-index: 2;
-        right: 0.5rem;
-        top: 0.5rem;
+        right: 1rem;
+        top: -0.8rem;
         padding: 0.1rem 0.5rem;
         content: attr(data-language);
         font-family: "JetBrains Mono Variable", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
@@ -30,10 +30,9 @@ export function pluginLanguageBadge() {
         @media (hover: none) {
           & [data-language]::before {
             opacity: 1;
-            margin-right: 3rem;
           }
           & [data-language]:active::before {
-            opacity: 0;
+            opacity: 1;
           }
         }
         @media (hover: hover) {
@@ -41,7 +40,7 @@ export function pluginLanguageBadge() {
             opacity: 1;
           }
           &:hover [data-language]::before {
-            opacity: 0;
+            opacity: 1;
           }
         }
       }
