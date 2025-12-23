@@ -116,7 +116,7 @@ export function GithubUserCardComponent(properties, children) {
 		);
 
 	const user = properties.user;
-	const cardUuid = `GU${Math.random().toString(36).slice(-6)}`;	
+	const cardUuid = `GU${Math.random().toString(36).slice(-6)}`;
 	const nAvatar = h(`div#${cardUuid}-avatar`, { class: "gu-avatar" });
 
 	const nDisplayName = h(
@@ -191,10 +191,7 @@ export function GithubUserCardComponent(properties, children) {
         avatarEl.style.backgroundImage = 'url(' + data.avatar_url + ')';
         avatarEl.style.backgroundColor = 'transparent';
         document.getElementById('${cardUuid}-card').classList.remove("fetch-waiting");
-        
-        // Force update structure
-        forceUpdateStructure();
-        
+
         console.log("[GITHUB-USER-CARD] Loaded card for ${user} | ${cardUuid}.")
       }).catch(err => {
         const c = document.getElementById('${cardUuid}-card');

@@ -1,5 +1,17 @@
 @tailwind components;
 
+/*我的自定义*/
+/* 网格背景效果 */
+html {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 60 60"><!-- 网格线 --><defs><pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse"><path d="M 60 0 L 0 0 0 60" fill="none" stroke="currentColor" stroke-width="0.5" opacity="0.1"/></pattern></defs><rect width="60" height="60" fill="url(%23grid)"/><!-- 交叉点 --><circle cx="0" cy="0" r="1" fill="currentColor" opacity="0.15"/><circle cx="30" cy="0" r="1" fill="currentColor" opacity="0.15"/><circle cx="60" cy="0" r="1" fill="currentColor" opacity="0.15"/><circle cx="0" cy="30" r="1" fill="currentColor" opacity="0.15"/><circle cx="30" cy="30" r="1" fill="currentColor" opacity="0.15"/><circle cx="60" cy="30" r="1" fill="currentColor" opacity="0.15"/><circle cx="0" cy="60" r="1" fill="currentColor" opacity="0.15"/><circle cx="30" cy="60" r="1" fill="currentColor" opacity="0.15"/><circle cx="60" cy="60" r="1" fill="currentColor" opacity="0.15"/></svg>');
+    background-size: 60px 60px;
+    background-position: 0 0;
+}
+
+.dark html {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 60 60"><!-- 网格线 --><defs><pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse"><path d="M 60 0 L 0 0 0 60" fill="none" stroke="currentColor" stroke-width="0.5" opacity="0.06"/></pattern></defs><rect width="60" height="60" fill="url(%23grid)"/><!-- 交叉点 --><circle cx="0" cy="0" r="1" fill="currentColor" opacity="0.1"/><circle cx="30" cy="0" r="1" fill="currentColor" opacity="0.1"/><circle cx="60" cy="0" r="1" fill="currentColor" opacity="0.1"/><circle cx="0" cy="30" r="1" fill="currentColor" opacity="0.1"/><circle cx="30" cy="30" r="1" fill="currentColor" opacity="0.1"/><circle cx="60" cy="30" r="1" fill="currentColor" opacity="0.1"/><circle cx="0" cy="60" r="1" fill="currentColor" opacity="0.1"/><circle cx="30" cy="60" r="1" fill="currentColor" opacity="0.1"/><circle cx="60" cy="60" r="1" fill="currentColor" opacity="0.1"/></svg>');
+}
+
 @layer components {
     .navbar {
         @apply rounded-[var(--radius-large)]  backdrop-blur-sm bg-white/80 transition;
@@ -122,6 +134,43 @@
     .btn-regular-dark.success {
         @apply bg-[oklch(0.75_0.14_var(--hue))] dark:bg-[oklch(0.75_0.14_var(--hue))]
     }
+
+    /*我的自定义*/
+    .postpage-post {
+        @apply rounded-[var(--radius-large)] overflow-hidden bg-[var(--card-bg)] transition relative;
+    }
+    /* PostCard 文章卡片水彩背景效果 */
+    .postpage-post::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 0;
+        background:
+            radial-gradient(circle at 20% 30%, oklch(0.92 0.05 calc(var(--hue) - 15)) 0%, transparent 40%),
+            radial-gradient(circle at 80% 20%, oklch(0.94 0.06 calc(var(--hue) + 10)) 0%, transparent 45%),
+            radial-gradient(circle at 60% 70%, oklch(0.90 0.07 calc(var(--hue) + 8)) 0%, transparent 50%),
+            radial-gradient(circle at 30% 80%, oklch(0.93 0.04 calc(var(--hue) - 8)) 0%, transparent 35%),
+            radial-gradient(circle at 90% 60%, oklch(0.91 0.08 calc(var(--hue) - 12)) 0%, transparent 38%),
+            radial-gradient(circle at 10% 50%, oklch(0.95 0.03 calc(var(--hue) + 5)) 0%, transparent 42%);
+        filter: blur(0px);
+        opacity: 0.20;
+        transition: all 0.5s ease;
+        pointer-events: none;
+    }
+
+    .dark .postpage-post::before {
+        background:
+            radial-gradient(circle at 20% 30%, oklch(0.25 0.06 calc(var(--hue) - 15)) 0%, transparent 40%),
+            radial-gradient(circle at 80% 20%, oklch(0.23 0.07 calc(var(--hue) + 10)) 0%, transparent 45%),
+            radial-gradient(circle at 60% 70%, oklch(0.20 0.08 calc(var(--hue) + 8)) 0%, transparent 50%),
+            radial-gradient(circle at 30% 80%, oklch(0.26 0.05 calc(var(--hue) - 8)) 0%, transparent 35%),
+            radial-gradient(circle at 90% 60%, oklch(0.22 0.09 calc(var(--hue) - 12)) 0%, transparent 38%),
+            radial-gradient(circle at 10% 50%, oklch(0.24 0.04 calc(var(--hue) + 5)) 0%, transparent 42%);
+        opacity: 0.4;
+    }
 }
 
 .custom-md img, #post-cover img {
@@ -163,6 +212,7 @@
   }
 }
 
+/*我的自定义*/
 /* PostCard 分隔线样式 */
 .post-card-wrapper:not(.last-visible)::after {
     content: '';
