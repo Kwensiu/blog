@@ -8,7 +8,7 @@ category: "开发"
 draft: false
 lang: "zh_CN"
 en: "how-to-add-dock/en/"
-updated: 2025-12-21
+updated: 2025-12-24
 ---
 
 _如有任何问题，敬请指出。_

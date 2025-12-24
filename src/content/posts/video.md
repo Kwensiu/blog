@@ -8,7 +8,7 @@ tags:
 category: 示例
 draft: false
 hidden: "part"
-updated: 2025-12-18
+updated: 2025-12-24
 ---
 
 只需从YouTube或其他平台复制嵌入代码，并粘贴到markdown文件中。

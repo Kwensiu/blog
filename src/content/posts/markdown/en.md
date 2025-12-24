@@ -6,7 +6,7 @@ tags: [Markdown, 博客, 演示]
 category: 示例
 draft: false
 lang: en
-updated: 2023-10-01
+updated: 2025-12-23
 cn: "markdown/cn/"
 ---
 

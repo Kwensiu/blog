@@ -1,7 +1,7 @@
 ---
 title: 博客更新日志
 published: 2025-12-18
-updated: 2025-12-21
+updated: 2025-12-24
 description: 博客前后端更新记录
 image: ''
 tags:
@@ -20,7 +20,26 @@ draft: false
 ---
 
 <details>
-<summary>v1.0.24 - 2025-12-23</summary>
+<summary>v0.0.26 - 2025-12-24 [MEGA39]</summary>
+
+feat: 添加MEGA39游戏记录文章与相关图片内容
+feat(writing): 完善写作页面功能，实际上更像一个格式生成器
+feat(dock): 为Dock组件添加节流，并更新Dock文章
+
+</details>
+
+<details>
+<summary>v0.0.25 - 2025-12-23</summary>
+
+feat(css): 为post背景添加水彩渐变; 为blog背景添加网格装饰
+fix(utils): 修复 part 贴文未正确隐藏的问题
+fix(styl): 修复 User-Card 缺少的 Github 图标
+fix(css): 调整 data-language 徽章的位置
+
+</details>
+
+<details>
+<summary>v0.0.24 - 2025-12-23 [GitHub 用户卡片]</summary>
 
 feat(expressive-code): 新增 GitHub 用户卡片样式  
 
@@ -33,7 +52,7 @@ feat(expressive-code): 新增 GitHub 用户卡片样式
 </details>
 
 <details>
-<summary>v1.0.23 - 2025-12-22</summary>
+<summary>v0.0.23 - 2025-12-22</summary>
 
 style(css): 调整 navbar 和 markdown 样式细节  
 
@@ -46,7 +65,7 @@ fix(pnpm): 修复莫名奇妙的 @iconify/svelte 版本问题
 </details>
 
 <details>
-<summary>v1.0.22 - 2025-12-21 [完善i18n]|[Writing页面]|[hidden重构]|[...]</summary>
+<summary>v0.0.22 - 2025-12-21 [完善i18n]|[Writing页面]|[hidden重构]|[...]</summary>
 
 fix(posts): 调整文章的hidden与lang字段，更新部分文档  
 
@@ -96,7 +115,7 @@ feat(ImageWrapper): 为图片添加 fetchpriority 属性支持
 </details>
 
 <details>
-<summary>v1.0.18 - 2025-12-20</summary>
+<summary>v0.0.18 - 2025-12-20</summary>
 
 feat(sytles): 完善文本横线的显示，用伪元素方式解决链接文本的虚线闪烁问题  
 
@@ -105,7 +124,7 @@ feat(sytles): 完善文本横线的显示，用伪元素方式解决链接文本
 </details>
 
 <details>
-<summary>v1.0.17 - 2025-12-20</summary>
+<summary>v0.0.17 - 2025-12-20</summary>
 
 日常维护：
 
@@ -116,7 +135,7 @@ feat(sytles): 完善文本横线的显示，用伪元素方式解决链接文本
 </details>
 
 <details>
-<summary>v1.0.16 - 2025-12-20</summary>
+<summary>v0.0.16 - 2025-12-20</summary>
 
 日常维护:
 
@@ -127,7 +146,7 @@ feat(sytles): 完善文本横线的显示，用伪元素方式解决链接文本
 </details>
 
 <details>
-<summary>v1.0.15 - 2025-12-20</summary>
+<summary>v0.0.15 - 2025-12-20</summary>
 
 feat(PostMeta): 添加文章多语言版本支持与语言切换按钮  
 
@@ -138,7 +157,7 @@ docs(dock-component): 添加 Dock 组件集成指南的中英文文档
 </details>
 
 <details>
-<summary>v1.0.14 - 2025-12-19 - [Dock重构]</summary>
+<summary>v0.0.14 - 2025-12-19 - [Dock重构]</summary>
 
 feat(dock): 重构 Dock 相关组件并增强可配置性，完善CN/EN文档介绍Dock组件  
 
@@ -151,7 +170,7 @@ feat(dock): 重构 Dock 相关组件并增强可配置性，完善CN/EN文档介
 </details>
 
 <details>
-<summary>v1.0.13 - 2025-12-18 </summary>
+<summary>v0.0.13 - 2025-12-18 </summary>
 
 feat(ImageWrapper): 修复大图查看下意外出现的透明容器导致的放大问题  
 
@@ -164,7 +183,7 @@ posts:为biome-formatter贴文添加cover
 </details>
 
 <details>
-<summary>v1.0.12 - 2025-12-18 </summary>
+<summary>v0.0.12 - 2025-12-18 </summary>
 
 refactor(dock): 将 Dock 组件的*颜色*与*亮暗色*按钮改为*归档*与*关于*页面  
 
@@ -173,7 +192,7 @@ feat(image-viewer): 尝试修复图片查看器滚轮会上下滑动而非缩放
 </details>
 
 <details>
-<summary>v1.0.11 - 2025-12-18</summary>
+<summary>v0.0.11 - 2025-12-18</summary>
 
 feat(post): 调整文章卡片与元数据显示样式及布局  
 
@@ -189,7 +208,7 @@ feat(post): 调整文章卡片与元数据显示样式及布局
 </details>
 
 <details>
-<summary>v1.0.10 - 2025-12-18 - [大图查看]</summary>
+<summary>v0.0.10 - 2025-12-18 - [大图查看]</summary>
 
 feat(image): 为 ImageWrapper 添加 PhotoSwipe 支持及相关属性  
 
@@ -202,7 +221,7 @@ fix(posts): 修改文章页面底部导航按钮布局
 </details>
 
 <details>
-<summary>v1.0.9 - 2025-12-18</summary>
+<summary>v0.0.9 - 2025-12-18</summary>
 
 fix(Dock): 调整Dock组件隐藏状态，调整Dock暗色以及搜索栏背景色，以提高可视度  
 
@@ -212,7 +231,7 @@ feat(posts): 重命名文章文件名并调整分类标签
 </details>
 
 <details>
-<summary>v1.0.8 - 2025-12-18</summary>
+<summary>v0.0.8 - 2025-12-18</summary>
 
 docs: 添加 Biome 格式化代码记录文章  
 
@@ -228,7 +247,7 @@ refactor(dock): 手动执行Biome相关命令格式化代码
 </details>
 
 <details>
-<summary>v1.0.7 - 2025-12-18</summary>
+<summary>v0.0.7 - 2025-12-18</summary>
 
 feat(dock): 优化 dock 组件交互与样式  
 
@@ -245,14 +264,14 @@ feat(dock): 优化 dock 组件交互与样式
 </details>
 
 <details>
-<summary>v1.0.6 - 2025-12-18</summary>
+<summary>v0.0.6 - 2025-12-18</summary>
 
 docs(posts): 更新导航页描述和内容  
 
 </details>
 
 <details>
-<summary>v1.0.5 - 2025-12-18 - [添加Dock]</summary>
+<summary>v0.0.5 - 2025-12-18 - [添加Dock]</summary>
 
 feat(dock): 添加底部悬浮 Dock 组件及搜索、主题切换功能  
 - 滚动时自动显示/隐藏
@@ -264,7 +283,7 @@ feat(dock): 添加底部悬浮 Dock 组件及搜索、主题切换功能
 </details>
 
 <details>
-<summary>v1.0.4 - 2025-12-18 - [Navbar模糊]</summary>
+<summary>v0.0.4 - 2025-12-18 - [Navbar模糊]</summary>
 
 feat(navbar): 更新Navbar样式并优化动画效果  
 
@@ -278,21 +297,21 @@ feat(navbar): 更新Navbar样式并优化动画效果
 </details>
 
 <details>
-<summary>v1.0.3 - 2025-12-16</summary>
+<summary>v0.0.3 - 2025-12-16</summary>
 
 feat(astro): 更新部署配置以支持 GitHub Pages  
 
 </details>
 
 <details>
-<summary>v1.0.2 - 2025-12-16</summary>
+<summary>v0.0.2 - 2025-12-16</summary>
 
 build(astro): 更新站点配置中的 vercel 部署地址  
 
 </details>
 
 <details>
-<summary>v1.0.1 - 2025-12-16</summary>
+<summary>v0.0.1 - 2025-12-16</summary>
 
 小小的更新
 
@@ -306,7 +325,7 @@ build(astro): 更新站点配置中的 vercel 部署地址
 </details>
 
 <details>
-<summary>v1.0.0 - 2025-12-16 - [部署] </summary>
+<summary>v0.0.0 - 2025-12-16 - [部署] </summary>
 
 世界加载完成：现已支持 Vercel 快递直达
 

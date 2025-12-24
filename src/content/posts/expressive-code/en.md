@@ -6,6 +6,7 @@ tags: [Markdown, 博客, 演示]
 category: 示例
 draft: false
 lang: en
+updated: 2025-12-21
 cn: "expressive-code/cn/"
 ---
 

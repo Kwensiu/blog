@@ -8,9 +8,11 @@
 
 如果你有任何想法，随便在issue或讨论里说。我的博客仓库没有规则，弄着玩的。
 
+[点击此处查看更新日志](../posts/002-update-notes/)
+
 ::github{repo="kwensiu/blog"}
 
-::github{username="kwensiu"}
+::github{user="kwensiu"}
 
 
 > ### Sources of images used in this site
