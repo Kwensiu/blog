@@ -234,3 +234,47 @@ html {
         display: none;
     }
 }
+
+/* ============ WritingEditor组件样式 ============ */
+.writing-editor {
+    @apply text-black dark:text-white;
+}
+
+.writing-editor textarea:focus,
+.writing-editor input:focus,
+.writing-editor select:focus {
+    @apply outline-none ring-2 ring-blue-500 border-blue-500;
+}
+
+.writing-editor textarea:hover,
+.writing-editor input:hover,
+.writing-editor select:hover {
+    @apply border-gray-400 dark:border-gray-500;
+}
+
+.writing-editor button:focus {
+    @apply outline-none ring-2 ring-blue-500;
+}
+
+/* 预览区域样式覆盖，防止markdown.css的伪元素影响代码块 */
+.writing-preview :global(p::after),
+.writing-preview :global(li::after),
+.writing-preview :global(h1::after),
+.writing-preview :global(h2::after),
+.writing-preview :global(h3::after),
+.writing-preview :global(h4::after),
+.writing-preview :global(h5::after),
+.writing-preview :global(h6::after) {
+    display: none !important;
+}
+
+/* 确保代码块内的内容不受影响 */
+.writing-preview :global(pre),
+.writing-preview :global(code) {
+    position: relative;
+}
+
+.writing-preview :global(pre::after),
+.writing-preview :global(code::after) {
+    display: none !important;
+}

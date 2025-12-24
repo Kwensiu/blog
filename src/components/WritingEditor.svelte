@@ -1,51 +1,56 @@
 <script lang="ts">
-// UI状态管理
-let isInitialized = false;
+	// ============ 状态管理 ============
+	// UI状态
+	let isInitialized = false;
+	let currentTab = "edit"; // 'edit' | 'preview'
+	let isLoading = false;
+	let showSuccess = false;
+	let errorMessage = "";
 
-// 文章元数据
-let title = "";
-let description = "";
-let tags: string[] = [];
-let category = "";
-let image = "";
-let draft = false;
-let lang = "zh_CN";
+	// ============ 文章数据 ============
+	// 基本信息
+	let title = "";
+	let description = "";
+	let content = "";
+	let tags: string[] = [];
+	let category = "";
+	let image = "";
 
-// 内容
-let content = "";
+	// 文章属性
+	let draft = true;
+	let lang = "zh_CN";
+	let pin = false;
+	let pinOrder = 0;
+	let hidden = "none";
 
-// UI状态
-let currentTab = "edit"; // 'edit' | 'preview'
-let isLoading = false;
-let showSuccess = false;
-let errorMessage = "";
+	// ============ 组件状态 ============
+	// 标签输入
+	let tagInput = "";
 
-// 标签输入
-let tagInput = "";
+	// Markdown预览
+	let previewHtml = "";
 
-// Markdown预览
-let previewHtml = "";
-
-function addTag() {
-	if (tagInput.trim() && !tags.includes(tagInput.trim())) {
-		tags = [...tags, tagInput.trim()];
-		tagInput = "";
+	// ============ 标签管理 ============
+	function addTag() {
+		if (tagInput.trim() && !tags.includes(tagInput.trim())) {
+			tags = [...tags, tagInput.trim()];
+			tagInput = "";
+		}
 	}
-}
 
-function removeTag(tag: string) {
-	tags = tags.filter((t) => t !== tag);
-}
-
-function handleTagKeydown(event: KeyboardEvent) {
-	if (event.key === "Enter" || event.key === ",") {
-		event.preventDefault();
-		addTag();
+	function removeTag(tag: string) {
+		tags = tags.filter((t) => t !== tag);
 	}
-}
 
-// 简单的Markdown转HTML（基础实现）
-function markdownToHtml(inputMarkdown: string): string {
+	function handleTagKeydown(event: KeyboardEvent) {
+		if (event.key === "Enter" || event.key === ",") {
+			event.preventDefault();
+			addTag();
+		}
+	}
+
+	// ============ Markdown处理 ============
+	function markdownToHtml(inputMarkdown: string): string {
 	let markdown = inputMarkdown;
 
 	// 先处理代码块，避免内部内容被解析
@@ -115,13 +120,13 @@ function markdownToHtml(inputMarkdown: string): string {
 	return html;
 }
 
-// 更新预览
-$: if (currentTab === "preview" && content) {
-	previewHtml = markdownToHtml(content);
-}
+	// ============ 反应式更新 ============
+	$: if (currentTab === "preview" && content) {
+		previewHtml = markdownToHtml(content);
+	}
 
-// 表单验证
-function validateForm(): string | null {
+	// ============ 表单处理 ============
+	function validateForm(): string | null {
 	if (!title.trim()) {
 		return "标题不能为空";
 	}
@@ -156,6 +161,10 @@ function validateForm(): string | null {
 		}
 	}
 
+	if (pin && pinOrder < 0) {
+		return "置顶顺序不能为负数";
+	}
+
 	return null;
 }
 
@@ -186,13 +195,17 @@ async function savePost() {
 		// 构建frontmatter
 		const frontmatter = `---
 title: "${title.replace(/"/g, '\\"')}"
-published: ${new Date().toISOString()}
+published: ${new Date().toISOString().split('T')[0]}
+updated: ${new Date().toISOString().split('T')[0]}
 description: "${description ? description.replace(/"/g, '\\"') : ""}"
 image: "${image}"
 tags: [${tags.map((tag) => `"${tag.replace(/"/g, '\\"')}"`).join(", ")}]
 category: ${category ? `"${category.replace(/"/g, '\\"')}"` : "null"}
 draft: ${draft}
 lang: "${lang}"
+pin: ${pin}
+pinOrder: ${pinOrder}
+hidden: ${hidden}
 ---`;
 
 		const fullContent = `${frontmatter}\n\n${content}`;
@@ -227,8 +240,11 @@ lang: "${lang}"
 		tags = [];
 		category = "";
 		image = "";
-		draft = false;
+		draft = true;
 		lang = "zh_CN";
+		pin = false;
+		pinOrder = 0;
+		hidden = "none";
 		content = "";
 	} catch (error) {
 		errorMessage = error instanceof Error ? error.message : "保存失败";
@@ -238,6 +254,7 @@ lang: "${lang}"
 }
 
 // 新增uploadPost函数用于上传到服务器
+/*
 async function uploadPost() {
 	const validationError = validateForm();
 	if (validationError) {
@@ -262,18 +279,22 @@ async function uploadPost() {
 		}
 
 		// 构建frontmatter
-		const frontmatter = `---
-title: "${title.replace(/"/g, '\\"')}"
-published: ${new Date().toISOString()}
-description: "${description ? description.replace(/"/g, '\\"') : ""}"
-image: "${image}"
-tags: [${tags.map((tag) => `"${tag.replace(/"/g, '\\"')}"`).join(", ")}]
-category: ${category ? `"${category.replace(/"/g, '\\"')}"` : "null"}
-draft: ${draft}
-lang: "${lang}"
----`;
+		const frontmatter = \`---
+title: "\${title.replace(/"/g, '\\\\"')}"
+published: \${new Date().toISOString().split('T')[0]}
+updated: \${new Date().toISOString().split('T')[0]}
+description: "\${description ? description.replace(/"/g, '\\\\"') : ""}"
+image: "\${image}"
+tags: [\${tags.map((tag) => \`"\${tag.replace(/"/g, '\\\\"')}"\`).join(", ")}]
+category: \${category ? \`"\${category.replace(/"/g, '\\\\"')}"\` : "null"}
+draft: \${draft}
+lang: "\${lang}"
+pin: \${pin}
+pinOrder: \${pinOrder}
+hidden: \${hidden}
+---\`;
 
-		const fullContent = `${frontmatter}\n\n${content}`;
+		const fullContent = \`\${frontmatter}\n\n\${content}\`;
 
 		// 发送到服务器保存
 		const response = await fetch("/blog/api/save-post/", {
@@ -282,7 +303,7 @@ lang: "${lang}"
 				"Content-Type": "application/json",
 			},
 			body: JSON.stringify({
-				filename: `${slug}.md`,
+				filename: \`\${slug}.md\`,
 				content: fullContent,
 			}),
 		});
@@ -303,8 +324,11 @@ lang: "${lang}"
 		tags = [];
 		category = "";
 		image = "";
-		draft = false;
+		draft = true;
 		lang = "zh_CN";
+		pin = false;
+		pinOrder = 0;
+		hidden = "none";
 		content = "";
 	} catch (error) {
 		errorMessage = error instanceof Error ? error.message : "保存失败";
@@ -312,10 +336,11 @@ lang: "${lang}"
 		isLoading = false;
 	}
 }
+*/
 </script>
 
 <div class="writing-editor">
-
+	<!-- ============ 状态提示 ============ -->
 	<!-- 成功提示 -->
 	{#if showSuccess}
 		<div class="mb-4 p-4 bg-green-100 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg">
@@ -332,13 +357,14 @@ lang: "${lang}"
 		</div>
 	{/if}
 
+	<!-- ============ 文章表单 ============ -->
 	<!-- 元数据表单 -->
 	<div class="mb-6 p-4 bg-gray-50 dark:bg-gray-800/50 rounded-lg">
 		<h3 class="text-lg font-semibold mb-4 text-black/90 dark:text-white/90">文章信息</h3>
 
-		<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+		<div class="space-y-4">
 			<!-- 标题 -->
-			<div class="md:col-span-2">
+			<div class="flex flex-col">
 				<label for="title" class="block text-sm font-medium mb-1 text-black/70 dark:text-white/70">标题 *</label>
 				<input
 					id="title"
@@ -350,7 +376,7 @@ lang: "${lang}"
 			</div>
 
 			<!-- 描述 -->
-			<div class="md:col-span-2">
+			<div class="flex flex-col">
 				<label for="description" class="block text-sm font-medium mb-1 text-black/70 dark:text-white/70">描述</label>
 				<input
 					id="description"
@@ -362,32 +388,32 @@ lang: "${lang}"
 			</div>
 
 			<!-- 分类 -->
-			<div>
-				<label for="category" class="block text-sm font-medium mb-1 text-black/70 dark:text-white/70">分类</label>
-				<input
-					id="category"
-					type="text"
-					bind:value={category}
-					placeholder="输入分类"
-					class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 text-black dark:text-white"
-				/>
+			<div class="flex flex-col">
+					<label for="category" class="block text-sm font-medium mb-1 text-black/70 dark:text-white/70">分类</label>
+					<input
+						id="category"
+						type="text"
+						bind:value={category}
+						placeholder="输入分类"
+						class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 text-black dark:text-white"
+					/>
 			</div>
 
 			<!-- 图片 -->
-			<div>
-				<label for="image" class="block text-sm font-medium mb-1 text-black/70 dark:text-white/70">封面图片</label>
-				<input
-					id="image"
-					type="text"
-					bind:value={image}
-					placeholder="图片路径"
-					class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 text-black dark:text-white"
-				/>
+			<div class="flex flex-col">
+					<label for="image" class="block text-sm font-medium mb-1 text-black/70 dark:text-white/70">封面图片</label>
+					<input
+						id="image"
+						type="text"
+						bind:value={image}
+						placeholder="图片路径"
+						class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 text-black dark:text-white"
+					/>
 			</div>
 
 			<!-- 标签 -->
-			<div class="md:col-span-2">
-				<label class="block text-sm font-medium mb-1 text-black/70 dark:text-white/70">标签</label>
+			<div class="flex flex-col">
+				<label for="tagInput" class="block text-sm font-medium mb-1 text-black/70 dark:text-white/70">标签</label>
 				<div class="flex flex-wrap gap-2 mb-2">
 					{#each tags as tag}
 						<span class="inline-flex items-center px-2 py-1 rounded-full text-xs bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-200">
@@ -403,6 +429,7 @@ lang: "${lang}"
 				</div>
 				<div class="flex gap-2">
 					<input
+						id="tagInput"
 						type="text"
 						bind:value={tagInput}
 						on:keydown={handleTagKeydown}
@@ -419,34 +446,69 @@ lang: "${lang}"
 			</div>
 
 			<!-- 语言 -->
-			<div>
-				<label for="lang" class="block text-sm font-medium mb-1 text-black/70 dark:text-white/70">语言</label>
-				<select
-					id="lang"
-					bind:value={lang}
-					class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 text-black dark:text-white"
-				>
-					<option value="zh_CN">中文(简体)</option>
-					<option value="zh_TW">中文(繁体)</option>
-					<option value="en">English</option>
-					<option value="ja">日本語</option>
-					<option value="ko">한국어</option>
-				</select>
+			<div class="flex flex-col">
+					<label for="lang" class="block text-sm font-medium mb-1 text-black/70 dark:text-white/70">语言</label>
+					<select
+						id="lang"
+						bind:value={lang}
+						class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 text-black dark:text-white"
+					>
+						<option value="zh_CN">中文(简体)</option>
+						<option value="zh_TW">中文(繁体)</option>
+						<option value="en">English</option>
+						<option value="ja">日本語</option>
+						<option value="ko">한국어</option>
+					</select>
+				</div>
+
+			<!-- 置顶 -->
+			<div class="flex flex-col">
+				<label for="pinOrder" class="block text-sm font-medium mb-1 text-black/70 dark:text-white/70">置顶</label>
+				<div class="flex gap-2">
+					<input
+						id="pinOrder"
+						type="number"
+						bind:value={pinOrder}
+						min="0"
+						placeholder="0"
+						class="flex-1 px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 text-black dark:text-white"
+					/>
+					<button
+						type="button"
+						on:click={() => pin = !pin}
+						class="px-4 py-2 rounded-md border text-sm font-medium transition-colors {pin ? 'bg-blue-500 border-blue-500 text-white hover:bg-blue-600' : 'bg-white dark:bg-gray-700 border-gray-300 dark:border-gray-600 text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-600 line-through'}"
+					>
+						置顶
+					</button>
+				</div>
 			</div>
 
-			<!-- 草稿 -->
-			<div class="flex items-center">
-				<input
-					id="draft"
-					type="checkbox"
-					bind:checked={draft}
-					class="mr-2"
-				/>
-				<label for="draft" class="text-sm font-medium text-black/70 dark:text-gray-400">草稿</label>
+			<!-- 隐藏模式 -->
+			<div class="flex flex-col">
+				<label for="hidden" class="block text-sm font-medium mb-1 text-black/70 dark:text-white/70">隐藏模式</label>
+				<div class="flex gap-2">
+					<select
+						id="hidden"
+						bind:value={hidden}
+						class="flex-1 px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 text-black dark:text-white"
+					>
+						<option value="none">不隐藏</option>
+						<option value="part">部分隐藏</option>
+						<option value="all">完全隐藏</option>
+					</select>
+					<button
+						type="button"
+						on:click={() => draft = !draft}
+						class="px-4 py-2 rounded-md border text-sm font-medium transition-colors {draft ? 'bg-orange-500 border-orange-500 text-white hover:bg-orange-600' : 'bg-white dark:bg-gray-700 border-gray-300 dark:border-gray-600 text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-600 line-through'}"
+					>
+						草稿
+					</button>
+				</div>
 			</div>
 		</div>
 	</div>
 
+	<!-- ============ 内容编辑器 ============ -->
 	<!-- 内容编辑器 -->
 	<div class="mb-6">
 		<!-- 标签页 -->
@@ -488,6 +550,7 @@ lang: "${lang}"
 		{/if}
 	</div>
 
+	<!-- ============ 操作按钮 ============ -->
 	<!-- 操作按钮 -->
 	<div class="flex justify-end gap-4">
 		<button
@@ -503,50 +566,10 @@ lang: "${lang}"
 		</button>
 		
 		<button
-			on:click={uploadPost}
-			disabled={isLoading}
-			class="px-6 py-2 bg-green-500 hover:bg-green-600 disabled:bg-green-300 disabled:cursor-not-allowed text-white rounded-md transition-colors flex items-center gap-2"
+			disabled
+			class="px-6 py-2 bg-gray-400 cursor-not-allowed text-gray-600 rounded-md text-sm font-medium line-through"
 		>
-			{#if isLoading}
-				上传中...
-			{:else}
-				上传文章
-			{/if}
+			上传文章
 		</button>
 	</div>
 </div>
-
-<style>
-	.writing-editor {
-		@apply text-black dark:text-white;
-	}
-
-	.writing-editor textarea:focus,
-	.writing-editor input:focus,
-	.writing-editor select:focus {
-		@apply outline-none ring-2 ring-blue-500 border-blue-500;
-	}
-
-	/* 预览区域样式覆盖，防止markdown.css的伪元素影响代码块 */
-	.writing-preview :global(p::after),
-	.writing-preview :global(li::after),
-	.writing-preview :global(h1::after),
-	.writing-preview :global(h2::after),
-	.writing-preview :global(h3::after),
-	.writing-preview :global(h4::after),
-	.writing-preview :global(h5::after),
-	.writing-preview :global(h6::after) {
-		display: none !important;
-	}
-
-	/* 确保代码块内的内容不受影响 */
-	.writing-preview :global(pre),
-	.writing-preview :global(code) {
-		position: relative;
-	}
-
-	.writing-preview :global(pre::after),
-	.writing-preview :global(code::after) {
-		display: none !important;
-	}
-</style>
