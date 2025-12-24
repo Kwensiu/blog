@@ -1,12 +1,12 @@
 ---
 title: Dock 组件集成指南
 published: 2025-12-19
-description: '展示如何集成我的 Dock 组件到 fuwari'
-image: ''
+description: "展示如何集成我的 Dock 组件到 fuwari"
+image: ""
 tags: [开发, 博客, fuwari]
-category: '开发'
-draft: false 
-lang: 'zh_CN'
+category: "开发"
+draft: false
+lang: "zh_CN"
 en: "how-to-add-dock/en/"
 updated: 2025-12-21
 ---
@@ -18,8 +18,9 @@ _如有任何问题，敬请指出。_
 # 组件概述
 
 Dock 组件的添加解决三个主要问题：
+
 1. 阅读时无法搜索或切换页面
-2. 中小屏幕下"回到顶部"按钮的缺失  
+2. 中小屏幕下"回到顶部"按钮的缺失
 3. 更有质感的博客
 
 ## 主要功能
@@ -36,6 +37,7 @@ src/components/dock/
 ├── Dock.svelte
 └── DockSearch.svelte
 ```
+
 ---
 
 # 集成步骤
@@ -45,6 +47,7 @@ src/components/dock/
 在项目的 `src/components/` 目录下创建一个名为 `dock` 的文件夹(可选)，并添加以下两个文件：
 
 1. **Dock.svelte** - Dock 组件组件主体，包括UI显示与滚动处理
+
 - 下面是 `Dock.svelte` 的完整代码。
 
 ```ts title="Dock.svelet" collapse={2-64, 69-141, 145-169}
@@ -223,6 +226,7 @@ transform: scale(1.05);
 - 参考: [Github | Dock.svelte](https://github.com/Kwensiu/blog/blob/main/src/components/dock/Dock.svelte)
 
 2. **DockSearch.svelte** - Dock 的搜索功能组件
+
 - 下面是 `DockSearch.svelte` 的完整代码。
 
 ```ts title="DockSearch.svelet" collapse={2-212, 216-221, 225-300, 304-321}
@@ -557,9 +561,9 @@ max-width: var(--search-panel-width, 30rem);
 
 1. 将 Dock 组件导入并添加到 Layout 文件（`src/layouts/Layout.astro`）：
 2. 在 `</body>` 前添加 `<Dock client:only="svelte" />`
-:::note
-使用 `client:only="svelte"` 避免水合问题
-:::
+   :::note
+   使用 `client:only="svelte"` 避免水合问题
+   :::
 
 ```js title="Layout.astro" ins={3, 11-12} showLineNumbers=false
 // ...
@@ -594,54 +598,56 @@ Dock 组件包含一个配置对象，可根据网站的结构和个人偏好进
 ```js title="Dock.svelet" "150" /"(/)"/ "/archive/" "/about/" startLineNumber=7
 // Configurable options...
 const config = {
-scrollThreshold: 150, //pixels
-homePath: "/",
-archivePath: "/archive/",
-aboutPath: "/about/"
+  scrollThreshold: 150, //pixels
+  homePath: "/",
+  archivePath: "/archive/",
+  aboutPath: "/about/",
 };
 ```
 
-## 防抖功能
+## 节流优化
 
-如果需要防抖功能，还可以在 `Dock.svelte` 中添加一个简单的定时器（待优化）
+为了减少功耗，可以在 `Dock.svelte` 中添加节流机制，限制滚动事件处理频率：
 
-```js title="Dock.svelet" ins={12-13, 15-16, 21, 23-27} collapse={3-9, 30-33} "handleScroll" showLineNumbers=false
+```ts title="Dock.svelte" ins={3, 12-14, 23-34} del={19-22} collapse={7-10} "handleScroll" ins="clearTimeout" showLineNumbers=false
 // ...
+let showDock = false;
+let scrollTimer: ReturnType<typeof setTimeout> | null = null;
+
 onMount(() => {
-handleScroll();
+  handleScroll();
 
-window.addEventListener("scroll", handleScroll, { passive: true });
+  window.addEventListener("scroll", handleScroll, { passive: true });
 
-return () => {
-        window.removeEventListener("scroll", handleScroll);
-};
+  return () => {
+    window.removeEventListener("scroll", handleScroll);
+    if (scrollTimer) {
+      clearTimeout(scrollTimer);
+    }
+  };
 });
-
-let scrollTimer: NodeJS.Timeout | null = null;
 
 function handleScroll() {
-if (scrollTimer) clearTimeout(scrollTimer);
-scrollTimer = setTimeout(() => {
-const currentScrollY = window.scrollY;
+  const currentScrollY = window.scrollY;
 
-// Dock displayed when the currentScrollY > scrollThreshold
-showDock = currentScrollY > config.scrollThreshold;
-}, 100); // 在这里设置延迟时间。
-}
+  // Dock displayed when the currentScrollY > scrollThreshold
+  showDock = currentScrollY > config.scrollThreshold;
+  // 清除之前的定时器
+  if (scrollTimer) {
+    clearTimeout(scrollTimer);
+  }
 
-onDestroy(() => {
-if (scrollTimer) clearTimeout(scrollTimer);
-scrollTimer = null;
-});
-
-function navigateHome(event: Event) {
-event.preventDefault();
-if (window.swup) {
-        window.swup.navigate(url(config.homePath));
-}
+  // 使用16ms节流（约60fps），减少频繁更新
+  scrollTimer = setTimeout(() => {
+    const currentScrollY = window.scrollY;
+    // Dock displayed when the currentScrollY > scrollThreshold
+    showDock = currentScrollY > config.scrollThreshold;
+    scrollTimer = null;
+  }, 16);
 }
 // ...
 ```
+
 ---
 
 # 样式问题？
@@ -652,8 +658,10 @@ if (window.swup) {
 # 更多功能？
 
 通过 Dock 其实还可以实现许多功能，例如：
+
 - 在中小屏幕上显示缺失的 `TOC` 组件
 - 为按钮添加长按/二级菜单实现...TOC!
+
 ---
 
 _更多功能等待更新_

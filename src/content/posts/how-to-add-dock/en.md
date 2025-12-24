@@ -1,11 +1,11 @@
 ---
 title: Dock Component Integration Guide
 published: 2025-12-19
-description: 'Show how to add the Dock component into fuwari'
-image: ''
+description: "Show how to add the Dock component into fuwari"
+image: ""
 tags: [开发, 博客, fuwari]
-category: '开发'
-draft: false 
+category: "开发"
+draft: false
 lang: en
 cn: "how-to-add-dock/cn/"
 updated: 2025-12-21
@@ -16,7 +16,9 @@ _Feel free to point out any issues._
 # Scroll down now to see the Dock.
 
 # Component Overview
+
 The Dock component solves three main problems:
+
 1. Inability to search or switch pages while reading
 2. The absence of the "Back to Top" button on small and medium-sized screens
 3. A more polished blog experience
@@ -35,6 +37,7 @@ src/components/dock/
 ├── Dock.svelte
 └── DockSearch.svelte
 ```
+
 ---
 
 # Merging Steps
@@ -44,6 +47,7 @@ src/components/dock/
 Create a `dock` folder in your project's `src/components/` directory and add the following two files:
 
 1. **Dock.svelte** - The main component of Dock, including UI and scrolling handling.
+
 - Here I post the **Complete** code for `Dock.svelte`
 
 ```ts title="Dock.svelet" collapse={2-64, 69-141, 145-169}
@@ -219,9 +223,10 @@ function navigateToAbout(event: Event) {
 </style>
 ```
 
-   - Reference: [Github | Dock.svelte](https://github.com/Kwensiu/blog/blob/main/src/components/dock/Dock.svelte)
+- Reference: [Github | Dock.svelte](https://github.com/Kwensiu/blog/blob/main/src/components/dock/Dock.svelte)
 
 2. **DockSearch.svelte** - Search functionality component
+
 - Also post the **Complete** code for `DockSearch.svelte` here.
 
 ```ts title="DockSearch.svelet" collapse={2-212, 216-221, 225-300, 304-321}
@@ -556,9 +561,9 @@ $: if (initialized && keyword) {
 
 1. Import and add the Dock component to your main layout file (usually `src/layouts/Layout.astro`):
 2. Add `<Dock client:only="svelte" />` before `</body>`
-:::note
-> Use `client:only="svelte"` to avoid hydration issues
-:::
+   :::note
+   > Use `client:only="svelte"` to avoid hydration issues
+   > :::
 
 ```js title="Layout.astro" ins={3, 11-12} showLineNumbers=false
 // ...
@@ -593,64 +598,67 @@ The Dock component includes a configuration object that can be modified accordin
 ```js title="Dock.svelet" "150" /"(/)"/ "/archive/" "/about/" startLineNumber=7
 // Configurable options...
 const config = {
-    scrollThreshold: 150, //pixels
-    homePath: "/",
-    archivePath: "/archive/",
-    aboutPath: "/about/"
+  scrollThreshold: 150, //pixels
+  homePath: "/",
+  archivePath: "/archive/",
+  aboutPath: "/about/",
 };
 ```
 
-## Debounce Function
+## Throttle Optimization
 
-If you need debounce, you can also add a simple timer in `Dock.svelte`.
+To reduce power consumption, you can add throttling to limit the frequency of scroll event handling in `Dock.svelte`:
 
-```js title="Dock.svelet" ins={12-13, 15-16, 21, 23-27} collapse={3-9, 30-33} "handleScroll" showLineNumbers=false
+```ts title="Dock.svelte" ins={3, 12-14, 23-34} del={19-22} collapse={7-10} "handleScroll" ins="clearTimeout" showLineNumbers=false
 // ...
+let showDock = false;
+let scrollTimer: ReturnType<typeof setTimeout> | null = null;
+
 onMount(() => {
-	handleScroll();
+  handleScroll();
 
-	window.addEventListener("scroll", handleScroll, { passive: true });
+  window.addEventListener("scroll", handleScroll, { passive: true });
 
-	return () => {
-		window.removeEventListener("scroll", handleScroll);
-	};
+  return () => {
+    window.removeEventListener("scroll", handleScroll);
+    if (scrollTimer) {
+      clearTimeout(scrollTimer);
+    }
+  };
 });
-
-let scrollTimer: NodeJS.Timeout | null = null;
 
 function handleScroll() {
-    if (scrollTimer) clearTimeout(scrollTimer);
-    scrollTimer = setTimeout(() => {
-        const currentScrollY = window.scrollY;
+  const currentScrollY = window.scrollY;
 
-        // Dock displayed when the currentScrollY > scrollThreshold
-        showDock = currentScrollY > config.scrollThreshold;
-   }, 100); // Set the delay time here.
-}
+  // Dock displayed when the currentScrollY > scrollThreshold
+  showDock = currentScrollY > config.scrollThreshold;
+  // Clear previous timer
+  if (scrollTimer) {
+    clearTimeout(scrollTimer);
+  }
 
-onDestroy(() => {
-    if (scrollTimer) clearTimeout(scrollTimer);
+  // Use 16ms throttling (approx 60fps), reduce frequent updates
+  scrollTimer = setTimeout(() => {
+    const currentScrollY = window.scrollY;
+    // Dock displayed when the currentScrollY > scrollThreshold
+    showDock = currentScrollY > config.scrollThreshold;
     scrollTimer = null;
-});
-
-function navigateHome(event: Event) {
-	event.preventDefault();
-	if (window.swup) {
-		window.swup.navigate(url(config.homePath));
-	}
+  }, 16);
 }
 // ...
 ```
+
 ---
 
 # Styles Problems?
 
-I've customized some global styles within my project.   
+I've customized some global styles within my project.  
 If the final result doesn't match my blog, please check the style definitions.
 
 # What More?
 
 The Dock can actually achieve many other functions, such as:
+
 - Displaying missing `TOC` components on small and medium-sized screens
 - Adding long-press/secondary menus to buttons to achieve…TOC!
 

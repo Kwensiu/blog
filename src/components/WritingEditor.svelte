@@ -1,56 +1,56 @@
 <script lang="ts">
-	// ============ 状态管理 ============
-	// UI状态
-	let isInitialized = false;
-	let currentTab = "edit"; // 'edit' | 'preview'
-	let isLoading = false;
-	let showSuccess = false;
-	let errorMessage = "";
+// ============ 状态管理 ============
+// UI状态
+let isInitialized = false;
+let currentTab = "edit"; // 'edit' | 'preview'
+let isLoading = false;
+let showSuccess = false;
+let errorMessage = "";
 
-	// ============ 文章数据 ============
-	// 基本信息
-	let title = "";
-	let description = "";
-	let content = "";
-	let tags: string[] = [];
-	let category = "";
-	let image = "";
+// ============ 文章数据 ============
+// 基本信息
+let title = "";
+let description = "";
+let content = "";
+let tags: string[] = [];
+let category = "";
+let image = "";
 
-	// 文章属性
-	let draft = true;
-	let lang = "zh_CN";
-	let pin = false;
-	let pinOrder = 0;
-	let hidden = "none";
+// 文章属性
+let draft = true;
+let lang = "zh_CN";
+let pin = false;
+let pinOrder = 0;
+let hidden = "none";
 
-	// ============ 组件状态 ============
-	// 标签输入
-	let tagInput = "";
+// ============ 组件状态 ============
+// 标签输入
+let tagInput = "";
 
-	// Markdown预览
-	let previewHtml = "";
+// Markdown预览
+let previewHtml = "";
 
-	// ============ 标签管理 ============
-	function addTag() {
-		if (tagInput.trim() && !tags.includes(tagInput.trim())) {
-			tags = [...tags, tagInput.trim()];
-			tagInput = "";
-		}
+// ============ 标签管理 ============
+function addTag() {
+	if (tagInput.trim() && !tags.includes(tagInput.trim())) {
+		tags = [...tags, tagInput.trim()];
+		tagInput = "";
 	}
+}
 
-	function removeTag(tag: string) {
-		tags = tags.filter((t) => t !== tag);
+function removeTag(tag: string) {
+	tags = tags.filter((t) => t !== tag);
+}
+
+function handleTagKeydown(event: KeyboardEvent) {
+	if (event.key === "Enter" || event.key === ",") {
+		event.preventDefault();
+		addTag();
 	}
+}
 
-	function handleTagKeydown(event: KeyboardEvent) {
-		if (event.key === "Enter" || event.key === ",") {
-			event.preventDefault();
-			addTag();
-		}
-	}
-
-	// ============ Markdown处理 ============
-	function markdownToHtml(inputMarkdown: string): string {
+// ============ Markdown处理 ============
+function markdownToHtml(inputMarkdown: string): string {
 	let markdown = inputMarkdown;
 
 	// 先处理代码块，避免内部内容被解析
@@ -120,13 +120,13 @@
 	return html;
 }
 
-	// ============ 反应式更新 ============
-	$: if (currentTab === "preview" && content) {
-		previewHtml = markdownToHtml(content);
-	}
+// ============ 反应式更新 ============
+$: if (currentTab === "preview" && content) {
+	previewHtml = markdownToHtml(content);
+}
 
-	// ============ 表单处理 ============
-	function validateForm(): string | null {
+// ============ 表单处理 ============
+function validateForm(): string | null {
 	if (!title.trim()) {
 		return "标题不能为空";
 	}
@@ -195,8 +195,8 @@ async function savePost() {
 		// 构建frontmatter
 		const frontmatter = `---
 title: "${title.replace(/"/g, '\\"')}"
-published: ${new Date().toISOString().split('T')[0]}
-updated: ${new Date().toISOString().split('T')[0]}
+published: ${new Date().toISOString().split("T")[0]}
+updated: ${new Date().toISOString().split("T")[0]}
 description: "${description ? description.replace(/"/g, '\\"') : ""}"
 image: "${image}"
 tags: [${tags.map((tag) => `"${tag.replace(/"/g, '\\"')}"`).join(", ")}]

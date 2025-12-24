@@ -13,6 +13,7 @@ const config = {
 };
 
 let showDock = false;
+let scrollTimer: ReturnType<typeof setTimeout> | null = null;
 
 onMount(() => {
 	handleScroll();
@@ -21,14 +22,25 @@ onMount(() => {
 
 	return () => {
 		window.removeEventListener("scroll", handleScroll);
+		if (scrollTimer) {
+			clearTimeout(scrollTimer);
+		}
 	};
 });
 
 function handleScroll() {
-	const currentScrollY = window.scrollY;
+	// 清除之前的定时器
+	if (scrollTimer) {
+		clearTimeout(scrollTimer);
+	}
 
-	// Dock displayed when the currentScrollY > scrollThreshold
-	showDock = currentScrollY > config.scrollThreshold;
+	// 使用16ms节流（约60fps），减少频繁更新
+	scrollTimer = setTimeout(() => {
+		const currentScrollY = window.scrollY;
+		// Dock displayed when the currentScrollY > scrollThreshold
+		showDock = currentScrollY > config.scrollThreshold;
+		scrollTimer = null;
+	}, 16);
 }
 
 function navigateHome(event: Event) {
