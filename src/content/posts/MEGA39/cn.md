@@ -40,6 +40,18 @@ hidden: none
 
 作为MOD管理器，安装位置可以随意。
 
+如果你系统有Scoop，也可以通过Scoop安装，这样使用还方便一点！
+
+我之后会写一篇文章，介绍如何优雅地使用 Scoop。
+
+```
+// 先添加 games 仓库，或者 spc 仓库也是有的
+scoop bucket add games
+
+// 然后执行安装
+scoop install games/divamodmanager
+```
+
 管理器内还自带 GameBanana 和 DivaModArchive 网站的快捷搜索下载。
 > 下文会有介绍
 
