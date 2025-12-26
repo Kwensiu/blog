@@ -153,7 +153,7 @@ irm scoop.201704.xyz -outfile 'install.ps1'
 
 这是我后来找到的另一个CN库，没有尝试过，故不展示过程。  
 
-<!-- ::github{repo="duzyn/scoop-cn"} -->
+::github{repo="duzyn/scoop-cn"}
 
 还有很多其他的CN库我就不介绍了~
 
@@ -163,9 +163,9 @@ irm scoop.201704.xyz -outfile 'install.ps1'
 
 这里推荐一下来自AmarBego开发的Rscoop，以及我对其Fork后加以改进的版本：
 
-<!-- ::github{repo="Kwensiu/Rscoop"} -->
+::github{repo="Kwensiu/Rscoop"}
 
-<!-- ::github{repo="AmarBego/Rscoop"} -->
+::github{repo="AmarBego/Rscoop"}
 
 相关功能介绍我已在仓库内详细介绍。
 
