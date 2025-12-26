@@ -38,15 +38,15 @@
     }
     
     /* 为列表元素添加横线效果 */
-    ul, ol {
+/*     ul, ol {
         @apply leading-relaxed;
         li {
-            @apply py-1 relative;
+            @apply relative;
             padding-left: 0.5rem;
-            padding-right: 0.5rem;
+            padding-right: 0.5rem; */
             
             /* 使用伪元素创建横线，只覆盖文字宽度 */
-            &::after {
+/*             &::after {
                 content: '';
                 position: absolute;
                 bottom: 0;
@@ -55,8 +55,8 @@
                 height: 1px;
                 background-color: var(--line-color);
             }
-        }
-    }
+        } */
+/*     } */
 
     /* 为标题添加横线效果 */
     h1, h2, h3, h4, h5, h6 {
@@ -191,4 +191,29 @@
         margin: 1em 0;
     }
     
+    .custom-bl {
+        position: relative;
+        height: 1px;
+        margin: 0.1rem 0;
+        background: transparent;
+        margin-left: 0.5rem;
+        margin-right: 0.5rem;
+    }
+
+    .custom-bl::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background-color: var(--line-color);
+    }
+
+    /* 专门针对anchor链接的样式，确保它不显示虚线效果 */
+    .anchor {
+        &::after {
+            opacity: 0 !important;
+        }
+    }
 }
