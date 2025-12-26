@@ -65,7 +65,7 @@ scoop install games/divamodmanager
 
 下载安装包后解压，复制里面的三个文件/文件夹复制到游戏本体目录下
 
-```Plaintext  ins={3-5}
+```plaintext  ins={3-5}
 ...\Hatsune Miku Project DIVA Mega Mix Plus
 ├── 📁 Crashreport
 ├── 📁 mods
