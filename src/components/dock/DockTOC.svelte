@@ -37,35 +37,33 @@
 	const TOC_HEADING_SELECTORS = ['h2', 'h3', 'h4'];
 	const POST_CONTAINER_ID = 'post-container';
 	const POSTS_PATH = '/posts/';
-	
+
 	// Timers
 	let scrollTimer: ReturnType<typeof setTimeout> | null = null;
 	let resizeTimer: ReturnType<typeof setTimeout> | null = null;
 	let swupHooksRegistered = false;
 
 	// Layout utilities
-	function updateDockPosition(): void {
-		if (resizeTimer) {
-			clearTimeout(resizeTimer);
-		}
+    function updateDockPosition(): void {
+        if (resizeTimer) {
+            clearTimeout(resizeTimer);
+        }
 
-		resizeTimer = setTimeout(() => {
-			const dockElement = document.getElementById('dock');
-			if (dockElement && dockTocElement) {
-				const dockRect = dockElement.getBoundingClientRect();
-				const tocRect = dockTocElement.getBoundingClientRect();
+        resizeTimer = setTimeout(() => {
+            const dockElement = document.getElementById('dock');
 
-				// 计算dock中心点到TOC按钮的距离
-				const dockCenterX = dockRect.left + dockRect.width / 2;
-				const tocCenterX = tocRect.left + tocRect.width / 2;
-				const offset = tocCenterX - dockCenterX;
+            if (dockElement) {
+                const dockRect = dockElement.getBoundingClientRect();
+                const dockCenterX = dockRect.left + dockRect.width / 2;
+                const screenCenterX = window.innerWidth / 2;
+                const dockShiftFromCenter = dockCenterX - screenCenterX;
+                const baseConfigOffset = parseFloat(CONFIG.DOCK_LEFT_OFFSET);
 
-				// 转换为rem单位 (假设1rem = 16px)
-				dockLeftOffset = offset / 16;
-			}
-			resizeTimer = null;
-		}, 100);
-	}
+                dockLeftOffset = baseConfigOffset + (dockShiftFromCenter / 16);
+            }
+            resizeTimer = null;
+        }, 100);
+    }
 
 	// Heading utilities
 	function extractHeadings(retryCount: number = 0): void {
@@ -76,7 +74,7 @@
 			console.log('[DockTOC] extractHeadings called, retryCount:', retryCount);
 			console.log('[DockTOC] propHeadings:', propHeadings);
 			console.log('[DockTOC] __astroHeadings:', (window as any).__astroHeadings);
-			
+
 			// 首先使用传入的 headings 数据（与现有 TOC 保持一致）
 			if (propHeadings && propHeadings.length > 0) {
 				const extractedHeadings: Heading[] = propHeadings.map((h: any) => ({
@@ -355,8 +353,8 @@
                 </div>
               {/if}
               <div
-                class="transition text-sm flex-1 
-                  {(heading.depth === getMinDepth() || heading.depth === getMinDepth() + 1) ? 'text-black/70 dark:text-white/70' : 
+                class="transition text-sm flex-1
+                  {(heading.depth === getMinDepth() || heading.depth === getMinDepth() + 1) ? 'text-black/70 dark:text-white/70' :
                   (heading.depth === getMinDepth() + 2) ? 'text-black/50 dark:text-white/50' : ''}"
               >
                 {heading.text}
