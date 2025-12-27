@@ -1,8 +1,10 @@
 <script lang="ts">
-import Icon from "@iconify/svelte";
-import { url } from "@utils/url-utils.ts";
-import { onMount } from "svelte";
-import DockSearch from "./DockSearch.svelte";
+	import Icon from "@iconify/svelte";
+	import { url } from "@utils/url-utils.ts";
+	import { onMount } from "svelte";
+	import DockSearch from "./DockSearch.svelte";
+
+	let props = $props();
 
 // Configurable options - can be customized based on site needs
 const config = {
@@ -12,7 +14,7 @@ const config = {
 	aboutPath: "/about/",
 };
 
-let showDock = false;
+let showDock = $state(false);
 let scrollTimer: ReturnType<typeof setTimeout> | null = null;
 
 onMount(() => {
@@ -95,7 +97,7 @@ function navigateToAbout(event: Event) {
 
   <!-- Buttons Container -->
   <div
-    class="relative flex items-center justify-center h-full px-6 will-change-transform"
+    class="relative flex items-center justify-center h-full px-4 will-change-transform"
   >
     <!-- Search Button -->
     <DockSearch />
@@ -105,7 +107,7 @@ function navigateToAbout(event: Event) {
       href={url(config.homePath)}
       class="btn-plain scale-animation rounded-3xl w-11 h-11 active:scale-90"
       aria-label="Home Page"
-      on:click={navigateHome}
+      onclick={navigateHome}
     >
       <Icon
         icon="material-symbols:home-outline-rounded"
@@ -116,7 +118,7 @@ function navigateToAbout(event: Event) {
     <!-- Return to Top Button -->
     <button
       class="btn-dock-primary items-center justify-center mx-1"
-      on:click={scrollToTop}
+      onclick={scrollToTop}
       aria-label="Return to Top"
     >
       <Icon
@@ -130,7 +132,7 @@ function navigateToAbout(event: Event) {
       href={url(config.archivePath)}
       class="btn-plain scale-animation rounded-3xl w-11 h-11 active:scale-90"
       aria-label="Archive Page"
-      on:click={navigateToArchive}
+      onclick={navigateToArchive}
     >
       <Icon
         icon="material-symbols:inventory-2-outline-rounded"
@@ -143,7 +145,7 @@ function navigateToAbout(event: Event) {
       href={url(config.aboutPath)}
       class="btn-plain scale-animation rounded-3xl w-11 h-11 active:scale-90"
       aria-label="About Page"
-      on:click={navigateToAbout}
+      onclick={navigateToAbout}
     >
       <Icon
         icon="material-symbols:info-outline-rounded"

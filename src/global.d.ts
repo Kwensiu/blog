@@ -1,4 +1,5 @@
 import type { AstroIntegration } from "@swup/astro";
+import type { MarkdownHeading } from "astro";
 
 declare global {
 	interface Window {
@@ -11,6 +12,7 @@ declare global {
 				}>;
 			}>;
 		};
+		pageHeadings?: MarkdownHeading[];
 	}
 }
 
