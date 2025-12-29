@@ -25,7 +25,7 @@ hidden: none
 ![Screenshot about game characters](img/char01.webp)
 > 重音帝特ahhh
 
-打歌的时候太忙啦，没截图。不过真的很多老歌！每首都有MMD太赞了~
+打歌的时候太忙啦，没截图。不过真的很多老歌！每首都有3DMV太赞了~
 ![Screenshot about songlist](img/songlist01.webp)
 
 # MOD

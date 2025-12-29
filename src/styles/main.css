@@ -2,14 +2,16 @@
 
 /*我的自定义*/
 /* 网格背景效果 */
-html {
-    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 60 60"><!-- 网格线 --><defs><pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse"><path d="M 60 0 L 0 0 0 60" fill="none" stroke="currentColor" stroke-width="0.5" opacity="0.1"/></pattern></defs><rect width="60" height="60" fill="url(%23grid)"/><!-- 交叉点 --><circle cx="0" cy="0" r="1" fill="currentColor" opacity="0.15"/><circle cx="30" cy="0" r="1" fill="currentColor" opacity="0.15"/><circle cx="60" cy="0" r="1" fill="currentColor" opacity="0.15"/><circle cx="0" cy="30" r="1" fill="currentColor" opacity="0.15"/><circle cx="30" cy="30" r="1" fill="currentColor" opacity="0.15"/><circle cx="60" cy="30" r="1" fill="currentColor" opacity="0.15"/><circle cx="0" cy="60" r="1" fill="currentColor" opacity="0.15"/><circle cx="30" cy="60" r="1" fill="currentColor" opacity="0.15"/><circle cx="60" cy="60" r="1" fill="currentColor" opacity="0.15"/></svg>');
-    background-size: 60px 60px;
-    background-position: 0 0;
-}
-
-.dark html {
-    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 60 60"><!-- 网格线 --><defs><pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse"><path d="M 60 0 L 0 0 0 60" fill="none" stroke="currentColor" stroke-width="0.5" opacity="0.06"/></pattern></defs><rect width="60" height="60" fill="url(%23grid)"/><!-- 交叉点 --><circle cx="0" cy="0" r="1" fill="currentColor" opacity="0.1"/><circle cx="30" cy="0" r="1" fill="currentColor" opacity="0.1"/><circle cx="60" cy="0" r="1" fill="currentColor" opacity="0.1"/><circle cx="0" cy="30" r="1" fill="currentColor" opacity="0.1"/><circle cx="30" cy="30" r="1" fill="currentColor" opacity="0.1"/><circle cx="60" cy="30" r="1" fill="currentColor" opacity="0.1"/><circle cx="0" cy="60" r="1" fill="currentColor" opacity="0.1"/><circle cx="30" cy="60" r="1" fill="currentColor" opacity="0.1"/><circle cx="60" cy="60" r="1" fill="currentColor" opacity="0.1"/></svg>');
+/* 只在小屏幕上显示背景图 */
+@media (max-width: 768px) {
+    footer, .footer {
+        background-image: url('../assets/images/footer-bg.webp');
+        background-position: center bottom;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-attachment: scroll;
+        border-top: 5px solid #513c29; /* 添加上边框 */
+    }
 }
 
 @layer components {
