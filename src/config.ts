@@ -49,25 +49,25 @@ export const navBarConfig: NavBarConfig = {
 };
 
 export const profileConfig: ProfileConfig = {
-	avatar: "assets/images/avatar.jpg", // Relative to the /src directory. Relative to the /public directory if it starts with '/'
+	avatar: "assets/images/avatar.webp", // Relative to the /src directory. Relative to the /public directory if it starts with '/'
 	name: "Kwensiu",
 	bio: "苦命鸳鸯",
 	links: [
 		{
-			name: "QQ",
-			icon: "fa6-brands:qq", // Visit https://icones.js.org/ for icon codes
+			name: "Netease",
+			icon: "mingcute:netease-music-line", // Visit https://icones.js.org/ for icon codes
 			// You will need to install the corresponding icon set if it's not already included
 			// `pnpm add @iconify-json/<icon-set-name>`
-			url: "https://qm.qq.com/q/83oScYZ0CQ",
+			url: "https://music.163.com/#/artist?id=34041007",
 		},
 		{
-			name: "Steam",
-			icon: "fa6-brands:steam",
-			url: "https://steamcommunity.com/profiles/76561198399070225",
+			name: "Email",
+			icon: "mdi:email-outline",
+			url: "mailto:kwen.siu@gmail.com",
 		},
 		{
 			name: "GitHub",
-			icon: "fa6-brands:github",
+			icon: "mdi:github",
 			url: "https://github.com/kwensiu",
 		},
 	],

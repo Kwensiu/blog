@@ -42,8 +42,12 @@ pinOrder: 0
 
 - [PicGo](https://github.com/Molunerfinn/PicGo) | 图床管理
 
+- [书签侧边栏](https://github.com/Kiuryy/Bookmark_Sidebar) | 浏览器标签管理
+
 
 # 系统工具
+
+- [LocalSend](https://localsend.org/zh-CN) | 本地文件传输
 
 - [Rscoop](https://github.com/AmarBego/Rscoop) | [Rscoop-Fork](https://github.com/Kwensiu/Rscoop) | Scoop GUI 管理器
 
