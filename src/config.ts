@@ -99,6 +99,6 @@ export const commentConfig: CommentConfig = {
 		inputPosition: "top",
 		theme: "reactive",
 		lang: "zh-CN",
-		loading: "lazy",
+		loading: "eager",
 	},
 };
