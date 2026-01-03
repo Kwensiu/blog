@@ -1,19 +1,28 @@
 ---
 import type { CollectionEntry } from "astro:content";
 import { commentConfig } from "@/config";
-import Giscus from "./Giscus.astro";
+import Giscus from "./Giscus.svelte";
 
 interface Props {
-  post: CollectionEntry<"posts">;
+	post: CollectionEntry<"posts">;
 }
 
 const { post } = Astro.props;
+const giscus = commentConfig.giscus;
 ---
 
-<link rel="stylesheet" href="@/styles/giscus.css" />
-
-<div class="giscus-card p-6 mb-4">
-  <div class="relative z-10">
-    <Giscus />
+<div class="giscus-card">
+  <div class="relative z-10 p-6">
+    {giscus && <Giscus client:load />}
   </div>
 </div>
+
+<style>
+  .giscus-card {
+    background-color: var(--color-card);
+    border-radius: 1.5rem;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.05);
+    position: relative;
+    overflow: visible;
+  }
+</style>

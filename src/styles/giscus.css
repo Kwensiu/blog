@@ -1,6 +1,4 @@
-/* Giscus 评论组件样式 */
-
-/* 禁用 Giscus 默认的边框和背景，使用我们自己的容器样式 */
+/* Giscus 评论组件样式 - 容器卡片 */
 .giscus-card {
   position: relative;
   border-radius: var(--radius-xxlarge);
@@ -14,12 +12,10 @@
   border-color: rgba(255, 255, 255, 0.1);
 }
 
-/* 覆盖 Giscus 组件内部样式以匹配主题 */
-.giscus-frame,
-.giscus-frame-async-lazy-load {
+/* Giscus iframe 样式覆盖 */
+.giscus-card iframe {
   border: none !important;
   width: 100% !important;
-  min-height: 300px !important;
 }
 
 /* 水彩背景效果 */
@@ -53,17 +49,6 @@
     radial-gradient(circle at 85% 55%, oklch(0.21 0.08 calc(var(--hue) - 14)) 0%, transparent 40%),
     radial-gradient(circle at 5% 45%, oklch(0.23 0.03 calc(var(--hue) + 3)) 0%, transparent 45%);
   opacity: 0.35;
-}
-
-/* Giscus 内部元素样式覆盖 */
-.giscus-card {
-  --giscus-primary-color: oklch(0.65 0.2 var(--hue));
-  --giscus-primary-hover-color: oklch(0.60 0.22 var(--hue));
-}
-
-.dark .giscus-card {
-  --giscus-primary-color: oklch(0.70 0.2 var(--hue));
-  --giscus-primary-hover-color: oklch(0.75 0.18 var(--hue));
 }
 
 /* 确保评论内容区域在上层 */
