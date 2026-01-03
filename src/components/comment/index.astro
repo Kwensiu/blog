@@ -1,0 +1,19 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { commentConfig } from "@/config";
+import Giscus from "./Giscus.astro";
+
+interface Props {
+  post: CollectionEntry<"posts">;
+}
+
+const { post } = Astro.props;
+---
+
+<link rel="stylesheet" href="@/styles/giscus.css" />
+
+<div class="giscus-card p-6 mb-4">
+  <div class="relative z-10">
+    <Giscus />
+  </div>
+</div>

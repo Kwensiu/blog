@@ -4,6 +4,7 @@ import type {
 	NavBarConfig,
 	ProfileConfig,
 	SiteConfig,
+	CommentConfig,
 } from "./types/config";
 import { LinkPreset } from "./types/config";
 
@@ -83,4 +84,21 @@ export const expressiveCodeConfig: ExpressiveCodeConfig = {
 	// Note: Some styles (such as background color) are being overridden, see the astro.config.mjs file.
 	// Please select a dark theme, as this blog theme currently only supports dark background color
 	theme: "github-dark",
+};
+
+export const commentConfig: CommentConfig = {
+	giscus: {
+		repo: "kwensiu/blog",
+		repoId: "R_kgDOQpMOOA",
+		category: "Announcements",
+		categoryId: "DIC_kwDOQpMOOM4C0hM4",
+		mapping: "pathname",
+		strict: "0",
+		reactionsEnabled: "1",
+		emitMetadata: "1",
+		inputPosition: "top",
+		theme: "preferred_color_scheme",
+		lang: "zh-CN",
+		loading: "lazy",
+	},
 };

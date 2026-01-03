@@ -104,3 +104,24 @@ export type BlogPostData = {
 export type ExpressiveCodeConfig = {
 	theme: string;
 };
+
+export type CommentConfig = {
+  giscus?: GiscusConfig
+}
+
+export type GiscusConfig = {
+  repo: string
+  repoId?: string
+  category?: string
+  categoryId?: string
+  mapping?: string
+  term?: string
+  strict: "0" | "1"
+  reactionsEnabled: "0" | "1"
+  emitMetadata: "0" | "1"
+  inputPosition: "top" | "bottom"
+  theme: string
+  lang: string
+  loading: string
+}
+

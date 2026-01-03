@@ -1,0 +1,73 @@
+/* Giscus 评论组件样式 */
+
+/* 禁用 Giscus 默认的边框和背景，使用我们自己的容器样式 */
+.giscus-card {
+  position: relative;
+  border-radius: var(--radius-xxlarge);
+  overflow: hidden;
+  background-color: var(--card-bg);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.dark .giscus-card {
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+/* 覆盖 Giscus 组件内部样式以匹配主题 */
+.giscus-frame,
+.giscus-frame-async-lazy-load {
+  border: none !important;
+  width: 100% !important;
+  min-height: 300px !important;
+}
+
+/* 水彩背景效果 */
+.giscus-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 0;
+  background:
+    radial-gradient(circle at 15% 25%, oklch(0.93 0.04 calc(var(--hue) - 12)) 0%, transparent 38%),
+    radial-gradient(circle at 75% 15%, oklch(0.95 0.05 calc(var(--hue) + 8)) 0%, transparent 42%),
+    radial-gradient(circle at 55% 65%, oklch(0.91 0.06 calc(var(--hue) + 10)) 0%, transparent 48%),
+    radial-gradient(circle at 25% 75%, oklch(0.94 0.03 calc(var(--hue) - 10)) 0%, transparent 35%),
+    radial-gradient(circle at 85% 55%, oklch(0.92 0.07 calc(var(--hue) - 14)) 0%, transparent 40%),
+    radial-gradient(circle at 5% 45%, oklch(0.96 0.02 calc(var(--hue) + 3)) 0%, transparent 45%);
+  filter: blur(0px);
+  opacity: 0.15;
+  transition: all 0.5s ease;
+  pointer-events: none;
+}
+
+.dark .giscus-card::before {
+  background:
+    radial-gradient(circle at 15% 25%, oklch(0.24 0.05 calc(var(--hue) - 12)) 0%, transparent 38%),
+    radial-gradient(circle at 75% 15%, oklch(0.22 0.06 calc(var(--hue) + 8)) 0%, transparent 42%),
+    radial-gradient(circle at 55% 65%, oklch(0.19 0.07 calc(var(--hue) + 10)) 0%, transparent 48%),
+    radial-gradient(circle at 25% 75%, oklch(0.25 0.04 calc(var(--hue) - 10)) 0%, transparent 35%),
+    radial-gradient(circle at 85% 55%, oklch(0.21 0.08 calc(var(--hue) - 14)) 0%, transparent 40%),
+    radial-gradient(circle at 5% 45%, oklch(0.23 0.03 calc(var(--hue) + 3)) 0%, transparent 45%);
+  opacity: 0.35;
+}
+
+/* Giscus 内部元素样式覆盖 */
+.giscus-card {
+  --giscus-primary-color: oklch(0.65 0.2 var(--hue));
+  --giscus-primary-hover-color: oklch(0.60 0.22 var(--hue));
+}
+
+.dark .giscus-card {
+  --giscus-primary-color: oklch(0.70 0.2 var(--hue));
+  --giscus-primary-hover-color: oklch(0.75 0.18 var(--hue));
+}
+
+/* 确保评论内容区域在上层 */
+.giscus-card > div {
+  position: relative;
+  z-index: 10;
+}
