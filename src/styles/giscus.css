@@ -1,11 +1,24 @@
 /* Giscus 评论组件样式 - 容器卡片 */
 .giscus-card {
   position: relative;
-  border-radius: var(--radius-xxlarge);
+  border-radius: var(--radius-xlarge);
   overflow: hidden;
   background-color: var(--card-bg);
   border: 1px solid rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
+}
+
+/* 调整小屏幕的样式 */
+@media (max-width: 768px) {
+  .giscus-card {
+    margin-right: -1.5rem;
+    margin-left: -1.5rem;
+    margin-bottom: -1.5rem;
+    border-right: none;
+    border-left: none;
+    border-bottom: none;
+    border-radius: 0 !important;
+  }
 }
 
 .dark .giscus-card {
@@ -16,6 +29,12 @@
 .giscus-card iframe {
   border: none !important;
   width: 100% !important;
+}
+
+@media (max-width: 768px) {
+  .giscus-card iframe {
+    border-radius: 0 !important;
+  }
 }
 
 /* 水彩背景效果 */
